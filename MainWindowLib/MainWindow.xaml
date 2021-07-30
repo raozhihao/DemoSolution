@@ -1,0 +1,353 @@
+﻿<mah:MetroWindow x:Class="MainWindowLib.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:dp="clr-namespace:GeneralTool.General.WPFHelper.Extensions;assembly=GeneralTool.General"
+                 xmlns:views="clr-namespace:MainWindowLib.Views"
+                 xmlns:userHelper="clr-namespace:MainWindowLib.DependecyHelpers"
+                 xmlns:vm="clr-namespace:MainWindowLib.ViewModels"
+                 xmlns:model="clr-namespace:MainWindowLib.Models"
+                 TitleCharacterCasing="Normal"
+                 xmlns:local="clr-namespace:MainWindowLib"
+                 WindowState="Maximized"
+                 mc:Ignorable="d"
+                 Title="通用UI框架"
+                 Height="720"
+                 Width="1280"
+                 MinHeight="720"
+                 MinWidth="1280"
+                 x:Name="window"
+                 userHelper:MetroHamburgerMenuDependecys.Main="{Binding ElementName=window}"
+                 dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Title,LangKey=MainTitle}">
+
+    <mah:MetroWindow.Resources>
+        <!--  This is the template for the option menu item  -->
+        <ResourceDictionary>
+
+            <!--  This is the template for the option menu item  -->
+            <DataTemplate x:Key="MenuItemTemplate"
+                          DataType="{x:Type mah:HamburgerMenuIconItem}">
+                <Grid Height="48"
+                      Visibility="{Binding Path=Icon.Visibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Cursor="Hand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=CompactPaneLength}" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <ContentControl Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Content="{Binding Icon}"
+                                    Focusable="False"
+                                    FontSize="20"
+                                    IsTabStop="False"
+                                    x:Name="Icon"
+                                    Background="Black"
+                                    ToolTip="{Binding Label}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               Text="{Binding Label}"
+                               x:Name="IconTxt" />
+                </Grid>
+
+            </DataTemplate>
+
+            <Style x:Key="CommandLabel"
+                   TargetType="Label"
+                   BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource DefaultIconFont}" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="Cursor"
+                        Value="Hand" />
+                <Setter Property="FontSize"
+                        Value="20" />
+                <Setter Property="BorderThickness"
+                        Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Label Content="{x:Static model:DefaultFontStyle.ClearCache}"
+                   ToolTip="清除缓存"
+                   dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=ToolTip,LangKey=ClearLogToolTip}"
+                   Style="{StaticResource CommandLabel}"
+                   MouseDown="{dp:EventBinding ClearLogsMouseDown,RoutedEvent={x:Static UIElement.MouseDownEvent}}" />
+
+            <Label Content="{x:Static model:DefaultFontStyle.Theme}"
+                   ToolTip="主题颜色"
+                   dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=ToolTip,LangKey=ThemeToopTip}"
+                   Style="{StaticResource CommandLabel}"
+                   MouseDown="{dp:EventBinding ThemeMouseDown}" />
+
+            <mah:SplitButton ItemsSource="{Binding LangList}"
+                             userHelper:SplitButtonDependecy.ClickOpen="True"
+                             SelectedIndex="{Binding LangSelectedIndex}"
+                             SelectionChanged="{dp:EventBinding LangSelectionChanged}"
+                             Cursor="Hand"
+                              />
+        </mah:WindowCommands>
+
+    </mah:MetroWindow.RightWindowCommands>
+
+    <mah:MetroWindow.Flyouts>
+        <mah:FlyoutsControl>
+            <mah:Flyout Header="主题颜色"
+                        dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Header,LangKey=ThemeHeader}"
+                        Theme="Adapt"
+                        IsOpen="{Binding ThemeIsOpen}"
+                        Position="Right">
+                <!-- The content goes here -->
+                <views:ThemeView DataContext="{Binding ThemeViewModel}"
+                                 VerticalAlignment="Top" />
+            </mah:Flyout>
+        </mah:FlyoutsControl>
+    </mah:MetroWindow.Flyouts>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="菜单栏"
+                   Visibility="Collapsed"
+                   x:Name="MenuLabel"
+                   dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Text,LangKey=MenuLabel}" />
+        <!--ConentThis-->
+        <mah:HamburgerMenu x:Name="HamburgerMenuControl"
+                           HamburgerWidth="48"
+                           DisplayMode="CompactInline"
+                           IsPaneOpen="False"
+                           ItemInvoked="{dp:EventBinding HamburgerItemInvoked}"
+                           ItemTemplate="{StaticResource MenuItemTemplate}"
+                           OptionsItemTemplate="{StaticResource MenuItemTemplate}"
+                           SelectedIndex="{Binding MainSelectedIndex}">
+
+            <!--  Header  -->
+            <mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               Foreground="White"
+                               Text="菜单"
+                               dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Text,LangKey=MenuLabel}"/>
+                </DataTemplate>
+            </mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
+
+            <!--  Items  -->
+            <mah:HamburgerMenu.ItemsSource>
+                <mah:HamburgerMenuItemCollection>
+
+                    <mah:HamburgerMenuIconItem Label="设置"
+                                               dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Label,LangKey=MenuSettingLabel}"
+                                               TargetPageType="{x:Type UserControl}"
+                                               IsVisible="True">
+                        <mah:HamburgerMenuIconItem.Icon>
+                            <TextBlock Text="{x:Static model:DefaultFontStyle.Setting}"
+                                       x:Name="tt"
+                                       FontFamily="{StaticResource DefaultIconFont}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+
+                        </mah:HamburgerMenuIconItem.Icon>
+                        <mah:HamburgerMenuIconItem.Tag>
+                            <views:RunSettingView userHelper:MetroHamburgerMenuDependecys.ViewDataContext="{x:Type vm:SettingViewModel}"
+                                                  x:Name="RunSettingView"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Width="500" />
+                        </mah:HamburgerMenuIconItem.Tag>
+                    </mah:HamburgerMenuIconItem>
+
+                    <mah:HamburgerMenuIconItem Label="接口"
+                                               TargetPageType="{x:Type UserControl}">
+                        <mah:HamburgerMenuIconItem.Icon>
+                            <TextBlock Text="{x:Static model:DefaultFontStyle.InterfacePower}"
+                                       FontFamily="{StaticResource DefaultIconFont}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding ElementName=RunSettingView,Path=DataContext.ControlVisible,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        </mah:HamburgerMenuIconItem.Icon>
+
+                        <mah:HamburgerMenuIconItem.Tag>
+                            <views:InterfacesView userHelper:MetroHamburgerMenuDependecys.ViewDataContext="{x:Type vm:InterfacesViewModel}" />
+                        </mah:HamburgerMenuIconItem.Tag>
+                    </mah:HamburgerMenuIconItem>
+
+                    <mah:HamburgerMenuIconItem Label="测试"
+                                               TargetPageType="{x:Type UserControl}">
+                        <mah:HamburgerMenuIconItem.Icon>
+                            <TextBlock Text="{x:Static model:DefaultFontStyle.Picture}"
+                                       FontFamily="{StaticResource DefaultIconFont}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding ElementName=RunSettingView,Path=DataContext.ControlVisible,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        </mah:HamburgerMenuIconItem.Icon>
+
+                        <mah:HamburgerMenuIconItem.Tag>
+                            <views:ImageView userHelper:MetroHamburgerMenuDependecys.ViewDataContext="{x:Type vm:ImageViewModel}" />
+                        </mah:HamburgerMenuIconItem.Tag>
+                    </mah:HamburgerMenuIconItem>
+
+                    <mah:HamburgerMenuIconItem Label="设备"
+                                               TargetPageType="{x:Type UserControl}">
+                        <mah:HamburgerMenuIconItem.Icon>
+                            <TextBlock Text="{x:Static model:DefaultFontStyle.Picture}"
+                                       FontFamily="{StaticResource DefaultIconFont}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding ElementName=RunSettingView,Path=DataContext.ControlVisible,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        </mah:HamburgerMenuIconItem.Icon>
+
+                        <mah:HamburgerMenuIconItem.Tag>
+                            <views:DeivceView userHelper:MetroHamburgerMenuDependecys.ViewDataContext="{x:Type vm:DeviceViewModel}" />
+                        </mah:HamburgerMenuIconItem.Tag>
+                    </mah:HamburgerMenuIconItem>
+
+                </mah:HamburgerMenuItemCollection>
+            </mah:HamburgerMenu.ItemsSource>
+
+            <!--  Content  -->
+            <mah:HamburgerMenu.ContentTemplate>
+                <DataTemplate>
+                    <Grid x:Name="ContentGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0"
+                                Margin="-1 0 -1 0"
+                                Background="#444">
+                            <TextBlock x:Name="Header"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="24"
+                                       Foreground="White"
+                                       Text="{Binding Label}" />
+                        </Border>
+                        <mah:TransitioningContentControl Grid.Row="1"
+                                                         Content="{Binding}"
+                                                         RestartTransitionOnContentChange="False"
+                                                         Transition="Default">
+
+                            <mah:TransitioningContentControl.Resources>
+
+                                <DataTemplate DataType="{x:Type mah:HamburgerMenuIconItem}">
+                                    <ContentControl  Focusable="True"
+                                                     IsTabStop="False"
+                                                     Content="{Binding Tag,Mode=TwoWay}"
+                                                     Margin="5 0">
+
+                                    </ContentControl>
+                                </DataTemplate>
+                            </mah:TransitioningContentControl.Resources>
+
+                        </mah:TransitioningContentControl>
+                    </Grid>
+                </DataTemplate>
+            </mah:HamburgerMenu.ContentTemplate>
+        </mah:HamburgerMenu>
+
+        <GridSplitter Grid.Row="1"
+                      Height="2"
+                      Background="Red"
+                      HorizontalAlignment="Stretch" />
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="3"
+                        Margin="5 0">
+                <mah:ToggleSwitch x:Name="InfoToggle"
+                                  Content="一般日志"
+                                  IsOn="True"
+                                  Cursor="Hand"
+                                  ToolTip="显示/隐藏一般日志" />
+
+                <mah:ToggleSwitch x:Name="WaringToggle"
+                                  Content="警告日志"
+                                  IsOn="True"
+                                  Cursor="Hand"
+                                  ToolTip="显示/隐藏警告日志" />
+
+                <mah:ToggleSwitch  x:Name="ErrorToggle"
+                                   Content="错误日志"
+                                   IsOn="True"
+                                   Cursor="Hand"
+                                   Background="Red"
+                                   ToolTip="显示/隐藏错误日志" />
+
+                <TextBlock Text="显示数量  "
+                           VerticalAlignment="Center" />
+                <mah:NumericUpDown Value="{Binding LogNums,StringFormat={}{0:D}}"
+                                   Maximum="1000"
+                                   Minimum="10"
+                                   VerticalAlignment="Center" />
+
+                <TextBlock Text="字体大小"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                <mah:NumericUpDown Value="{Binding LogFontSize}"
+                                   Minimum="9"
+                                   Maximum="30"
+                                   VerticalAlignment="Center" />
+
+                <Button Content="清除日志"
+                        Margin="5"
+                        Command="{Binding ClearLogCommand}"
+                        CommandParameter="{Binding ElementName=Par}"
+                        FontSize="14">
+
+                </Button>
+
+            </StackPanel>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto"
+                          CanContentScroll="True"
+                          Grid.Row="1"
+                          Grid.ColumnSpan="3"
+                          dp:ScrollViewerExtensions.AlwaysScrollToEnd="True">
+
+                <RichTextBox Style="{StaticResource MahApps.Styles.RichTextBox}"
+                             IsReadOnly="True">
+
+                    <FlowDocument  mah:VisibilityHelper.IsVisible="True"
+                                   PageWidth="{Binding RelativeSource={RelativeSource AncestorType=RichTextBox,Mode=FindAncestor},Path=ActualWidth}">
+                        <Paragraph mah:VisibilityHelper.IsVisible="True"
+                                   x:Name="Par"
+                                   dp:ParagrahDependency.MaxLineCount="{Binding LogNums}"
+                                   dp:ParagrahDependency.Lines="{Binding Lines}"
+                                   dp:ParagrahDependency.ErrorForeground="Red"
+                                   dp:ParagrahDependency.WaringForeground="DarkOrange"
+                                   dp:ParagrahDependency.InfoVisible="{Binding ElementName=InfoToggle,Path=IsOn,Mode=TwoWay}"
+                                   dp:ParagrahDependency.WaringVisible="{Binding ElementName=WaringToggle,Path=IsOn,Mode=TwoWay}"
+                                   dp:ParagrahDependency.ErroVisible="{Binding ElementName=ErrorToggle,Path=IsOn,Mode=TwoWay}"
+                                   dp:ParagrahDependency.DebugVisible="False"
+                                   dp:ParagrahDependency.FailVisible="False"
+                                   FontSize="{Binding LogFontSize}">
+
+                        </Paragraph>
+
+                    </FlowDocument>
+
+                </RichTextBox>
+            </ScrollViewer>
+
+        </Grid>
+    </Grid>
+</mah:MetroWindow>
