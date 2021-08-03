@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GeneralTool.General.WPFHelper;
 using System.Windows.Input;
-using GeneralTool.General.WPFHelper;
 
 namespace CommonModels
 {
-    public class DeviceItem
+    public class DeviceItem : BaseNotifyModel
     {
-        public int DeviceID { get; set; }
-        public string Name { get; set; }
+        private int deviceId;
+        public int DeviceID { get => this.deviceId; set => this.RegisterProperty(ref this.deviceId, value); }
+
+        private string name;
+        public string Name { get => this.name; set => this.RegisterProperty(ref this.name, value); }
         public string ToopTip
         {
             get
@@ -20,5 +18,12 @@ namespace CommonModels
             }
         }
         public ICommand DeviceCommand { get; set; }
+
+        public ICommand UpdateHeaderCommand { get; set; }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

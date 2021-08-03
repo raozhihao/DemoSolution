@@ -1,7 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Net.NetworkInformation;
-using System.Windows;
+﻿using System.Windows;
 
 namespace MainWindowLib
 {

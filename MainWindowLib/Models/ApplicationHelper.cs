@@ -9,7 +9,7 @@ namespace MainWindowLib.Models
     /// <summary>
     /// 应用程序帮助类
     /// </summary>
-    public static class ApplictionHelper
+    public static class ApplicationHelper
     {
         /// <summary>
         /// 显示消息
@@ -20,7 +20,7 @@ namespace MainWindowLib.Models
         /// <returns></returns>
         public static async Task<MessageDialogResult> ShowAsync(string title, string content, MessageDialogStyle dialogStyle = MessageDialogStyle.Affirmative)
         {
-            return await ApplictionWindow.ShowMessageAsync(title, content, dialogStyle);
+            return await ApplicationWindow.ShowMessageAsync(title, content, dialogStyle);
         }
 
         /// <summary>
@@ -31,14 +31,14 @@ namespace MainWindowLib.Models
         /// <returns></returns>
         public static async Task<ProgressDialogController> ShowProgressAsync(string title, string content)
         {
-            return await ApplictionWindow.ShowProgressAsync(title, content);
+            return await ApplicationWindow.ShowProgressAsync(title, content);
         }
 
-       
+
         /// <summary>
         /// 获取当前应用程序 Metro 主窗体
         /// </summary>
-        public static MetroWindow ApplictionWindow { get => Application.Current.MainWindow as MetroWindow; }
+        public static MetroWindow ApplicationWindow { get => Application.Current.MainWindow as MetroWindow; }
 
         /// <summary>
         /// 获取当前应用程序UI同步上下文

@@ -1,8 +1,6 @@
 ﻿using CommonLibrary;
 using MahApps.Metro.Controls;
 using MainWindowLib.ViewModels;
-using Microsoft.Win32;
-using System;
 using System.Windows;
 
 namespace MainWindowLib

@@ -1,5 +1,4 @@
-﻿using CommonLibrary;
-using CommonModels;
+﻿using CommonModels;
 using System;
 
 namespace CommonLibrary

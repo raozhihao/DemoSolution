@@ -67,8 +67,7 @@
                    Grid.Row="1"
                    Grid.Column="0" />
 
-        <mah:ColorPicker  x:Name="Colors"
-                          Grid.Row="1"
+        <mah:ColorPicker  Grid.Row="1"
                           Grid.Column="1"
                           SelectedColor="{Binding SelectedColor}"
                           mah:TextBoxHelper.ClearTextButton="True"

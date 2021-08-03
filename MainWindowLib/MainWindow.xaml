@@ -323,8 +323,7 @@
                           Grid.ColumnSpan="3"
                           dp:ScrollViewerExtensions.AlwaysScrollToEnd="True">
 
-                <RichTextBox Style="{StaticResource MahApps.Styles.RichTextBox}"
-                             IsReadOnly="True">
+                <RichTextBox  IsReadOnly="True">
 
                     <FlowDocument  mah:VisibilityHelper.IsVisible="True"
                                    PageWidth="{Binding RelativeSource={RelativeSource AncestorType=RichTextBox,Mode=FindAncestor},Path=ActualWidth}">

@@ -10,8 +10,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
-using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,7 +164,7 @@ namespace MainWindowLib.ViewModels
         {
             var text = sender as UIElement;
             text.IsEnabled = false;
-            var result = await ApplictionHelper.ShowProgressAsync("提示", "正在清除中,请稍候");
+            var result = await ApplicationHelper.ShowProgressAsync("提示", "正在清除中,请稍候");
             await Task.Delay(1000);
             await Task.Run(() =>
             {
@@ -253,7 +251,7 @@ namespace MainWindowLib.ViewModels
             dic.Add("English", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/English.xaml") });
             dic.Add("中文", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/Chinese.xaml") });
             LangProvider.LangProviderInstance.AddLangResources(dic);
-           // LangProvider.LangProviderInstance.DefaultChineseLangKey = "中文";
+            // LangProvider.LangProviderInstance.DefaultChineseLangKey = "中文";
         }
 
         private void Controller_RaiseNoticMessageEvent(string message, GrowType growType)
@@ -268,7 +266,7 @@ namespace MainWindowLib.ViewModels
 
         public void Init()
         {
-            ApplictionHelper.SynchronizationContext = SynchronizationContext.Current;
+            ApplicationHelper.SynchronizationContext = SynchronizationContext.Current;
             this.Log.LogEvent += this.Log_LogEvent;
         }
 

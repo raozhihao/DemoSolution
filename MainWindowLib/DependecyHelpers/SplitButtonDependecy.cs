@@ -1,14 +1,10 @@
 ﻿using MahApps.Metro.Controls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MainWindowLib.DependecyHelpers
 {
-    public class SplitButtonDependecy:DependencyObject
+    public class SplitButtonDependecy : DependencyObject
     {
         public readonly static DependencyProperty ClickOpenProperty = DependencyProperty.RegisterAttached("ClickOpen", typeof(bool), typeof(SplitButtonDependecy), new PropertyMetadata(ClickOpenChanged));
 
@@ -17,7 +13,7 @@ namespace MainWindowLib.DependecyHelpers
             if ((bool)e.NewValue)
             {
                 var button = d as SplitButton;
-                button.AddHandler(UIElement.MouseDownEvent,new RoutedEventHandler(Button_MouseDown),true);
+                button.AddHandler(UIElement.MouseDownEvent, new RoutedEventHandler(Button_MouseDown), true);
             }
         }
 

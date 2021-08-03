@@ -10,4 +10,7 @@
     <sys:String x:Key="ServerIPLabel">Server IP:</sys:String>
     <sys:String x:Key="LoadingStartup">Start Loading....Please wait...</sys:String>
     <sys:String x:Key="CurrentUICulture">en-US</sys:String>
+    <sys:String x:Key="MenuCut">Cut</sys:String>
+    <sys:String x:Key="MenuCopy">Copy</sys:String>
+    <sys:String x:Key="MenuPaste">Paste</sys:String>
 </ResourceDictionary>

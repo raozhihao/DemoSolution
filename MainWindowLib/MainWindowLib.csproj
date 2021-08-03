@@ -79,7 +79,7 @@
     <Compile Include="DependecyHelpers\ItemsDoTaskDependecy.cs" />
     <Compile Include="DependecyHelpers\MetroHamburgerMenuDependecys.cs" />
     <Compile Include="DependecyHelpers\SplitButtonDependecy.cs" />
-    <Compile Include="Models\ApplictionHelper.cs" />
+    <Compile Include="Models\ApplicationHelper.cs" />
     <Compile Include="Models\DefaultFontStyle.cs" />
     <Compile Include="NoticeGlobal.cs" />
     <Compile Include="ViewModels\DeviceViewModel.cs" />

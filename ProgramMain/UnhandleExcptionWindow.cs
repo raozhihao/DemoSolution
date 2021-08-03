@@ -68,6 +68,7 @@ namespace ProgramMain
                 TextWrapping = TextWrapping.Wrap,
                 VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
                 IsReadOnly = true,
+                Style = new Style(typeof(TextBox), null)
             };
         }
 

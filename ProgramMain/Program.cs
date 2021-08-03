@@ -6,7 +6,6 @@ using GeneralTool.General.TaskLib;
 using GeneralTool.General.WPFHelper.Extensions;
 using MainWindowLib;
 using MainWindowLib.ViewModels;
-using Microsoft.Win32;
 using System;
 using System.Windows;
 using System.Windows.Media;
@@ -26,8 +25,7 @@ namespace ProgramMain
         /// </summary>
         public static void Start()
         {
-           InjectionService.Service.InjectionSingleInstance<MainWindow>();
-            //InjectionService.Service.InjectionSingleInstance<DemoApp.DemoWindow>();
+            InjectionService.Service.InjectionSingleInstance<MainWindow>();
             var log = new FileInfoLog("内容日志");//5M大小每个
             InjectionService.Service.InjectionSingleInstance<ILog>(log);
             NoticeGlobal.Log = log;
@@ -37,8 +35,6 @@ namespace ProgramMain
             InjectionService.Service.InjectionSingleInstance<TestTask>();
             InjectionService.Service.InjectionSingleInstance<TestLib2>();
 
-            //var mainViewModel = new MainViewModel();
-            //InjectionService.Service.InjectionSingleInstance<MainViewModel>(mainViewModel);
             InjectionService.Service.InjectionSingleInstance<MainViewModel>();
             InjectionService.Service.InjectionSingleInstance<ImageViewModel>();
             InjectionService.Service.InjectionSingleInstance<InterfacesViewModel>();
@@ -55,24 +51,22 @@ namespace ProgramMain
             //处理非UI线程异常  
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            var app = new App();
 
             try
             {
-               //InitTheme();
-               // var splash = new SplashScreenWindow();
-                //splash.Show(Resource.code.ToBitmapImage());
-
+                var app = new App();
+                app.InitializeComponent();
+                InitTheme();
                 using (System.Threading.Mutex mutex = new System.Threading.Mutex(true, AppDomain.CurrentDomain.FriendlyName, out bool createNew))
                 {
                     if (createNew)
                     {
-                        app.InitializeComponent();
+                        var splash = new SplashScreenWindow();
+                        splash.Show(Resource.code.ToBitmapImage());
                         Start();
-
                         app.MainWindow = InjectionService.Service.Resolve<MainWindow>();
                         app.MainWindow.Show();
-                        //splash.Close();
+                        splash.Close();
                         app.Run();
                     }
                     else
@@ -97,7 +91,7 @@ namespace ProgramMain
         /// </summary>
         private static void InitTheme()
         {
-           // Application.Current.Dispatcher.Thread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            // Application.Current.Dispatcher.Thread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             var themeColorName = IniSettings.ThemeNode.ThemeColorName.Value;
             var selectTheme = IniSettings.ThemeNode.ThemeName.Value;
             var color = (Color)ColorConverter.ConvertFromString(themeColorName);
