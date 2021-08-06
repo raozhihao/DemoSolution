@@ -2,6 +2,7 @@
 using ControlzEx.Theming;
 using GeneralTool.General.Interfaces;
 using GeneralTool.General.WPFHelper;
+using MainWindowLib.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -9,7 +10,7 @@ using System.Windows.Media;
 
 namespace MainWindowLib.ViewModels
 {
-    public class ThemeViewModel : BaseNotifyModel
+    public class ThemeViewModel : BaseCustomDialogViewModel
     {
         private string selectTheme = "Light";
         public string SelectTheme
@@ -34,7 +35,7 @@ namespace MainWindowLib.ViewModels
         {
             get
             {
-                return new SimpleCommand(() =>
+                return new SimpleCommand(async () =>
                 {
                     var newTheme = new Theme(name: "CustomTheme",
                                    displayName: "CustomTheme",
@@ -50,6 +51,7 @@ namespace MainWindowLib.ViewModels
                     IniSettings.ThemeNode.ThemeName.Value = this.SelectTheme;
                     this.CurrentTheme = $"{this.SelectTheme}.{this.SelectedColor}";
                     this.Log.Info($"主题已更改为:{ this.CurrentTheme}");
+                    await this.CloseAsync();
                 });
             }
         }

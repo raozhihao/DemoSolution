@@ -19,9 +19,19 @@
                  MinHeight="720"
                  MinWidth="1280"
                  x:Name="window"
+                 IconBitmapScalingMode="HighQuality"
                  userHelper:MetroHamburgerMenuDependecys.Main="{Binding ElementName=window}"
-                 dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Title,LangKey=MainTitle}">
+                 dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Title,LangKey=MainTitle}"
+                 Closing="{dp:EventBinding EventHandlerName=MainClosing}">
 
+    <mah:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Image Source="Asserts/UI.ico"
+                   Margin="5"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
+        </DataTemplate>
+    </mah:MetroWindow.IconTemplate>
+    
     <mah:MetroWindow.Resources>
         <!--  This is the template for the option menu item  -->
         <ResourceDictionary>
@@ -91,6 +101,7 @@
                              SelectionChanged="{dp:EventBinding LangSelectionChanged}"
                              Cursor="Hand"
                               />
+            
         </mah:WindowCommands>
 
     </mah:MetroWindow.RightWindowCommands>
@@ -102,7 +113,7 @@
                         Theme="Adapt"
                         IsOpen="{Binding ThemeIsOpen}"
                         Position="Right">
-                <!-- The content goes here -->
+                 <!--The content goes here--> 
                 <views:ThemeView DataContext="{Binding ThemeViewModel}"
                                  VerticalAlignment="Top" />
             </mah:Flyout>
@@ -201,7 +212,7 @@
                     <mah:HamburgerMenuIconItem Label="设备"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
-                            <TextBlock Text="{x:Static model:DefaultFontStyle.Picture}"
+                            <TextBlock Text="{x:Static model:DefaultFontStyle.Camera}"
                                        FontFamily="{StaticResource DefaultIconFont}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -214,6 +225,21 @@
                         </mah:HamburgerMenuIconItem.Tag>
                     </mah:HamburgerMenuIconItem>
 
+                    <mah:HamburgerMenuIconItem Label="加载框测试"
+                                               TargetPageType="{x:Type UserControl}">
+                        <mah:HamburgerMenuIconItem.Icon>
+                            <TextBlock Text="{x:Static model:DefaultFontStyle.LeftArrow}"
+                                       FontFamily="{StaticResource DefaultIconFont}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding ElementName=RunSettingView,Path=DataContext.ControlVisible,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        </mah:HamburgerMenuIconItem.Icon>
+
+                        <mah:HamburgerMenuIconItem.Tag>
+                            <views:CustomDialogView userHelper:MetroHamburgerMenuDependecys.ViewDataContext="{x:Type vm:CustomViewModel}" />
+                        </mah:HamburgerMenuIconItem.Tag>
+                    </mah:HamburgerMenuIconItem>
                 </mah:HamburgerMenuItemCollection>
             </mah:HamburgerMenu.ItemsSource>
 

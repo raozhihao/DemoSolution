@@ -26,9 +26,9 @@ namespace ProgramMain
         public static void Start()
         {
             InjectionService.Service.InjectionSingleInstance<MainWindow>();
-            var log = new FileInfoLog("内容日志");//5M大小每个
-            InjectionService.Service.InjectionSingleInstance<ILog>(log);
-            NoticeGlobal.Log = log;
+            var contentLog = new FileInfoLog("内容日志");//5M大小每个
+            InjectionService.Service.InjectionSingleInstance<ILog>(contentLog);
+            NoticeGlobal.Log = contentLog;
 
             InjectionService.Service.InjectionSingleInstance<MiddleController>();
             InjectionService.Service.InjectionSingleInstance<TaskManager>();
@@ -41,6 +41,7 @@ namespace ProgramMain
             InjectionService.Service.InjectionSingleInstance<SettingViewModel>();
             InjectionService.Service.InjectionSingleInstance<ThemeViewModel>();
             InjectionService.Service.InjectionSingleInstance<DeviceViewModel>();
+            InjectionService.Service.InjectionSingleInstance<CustomViewModel>();
 
             InjectionService.Service.Start();
         }
@@ -50,7 +51,6 @@ namespace ProgramMain
         {
             //处理非UI线程异常  
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
 
             try
             {
@@ -71,11 +71,12 @@ namespace ProgramMain
                     }
                     else
                     {
-                        UnhandleExcptionWindow.MessageBox("应用程序已经在运行中...");
+                        var message = "应用程序已经在运行中...";
+                        UnhandleExcptionWindow.MessageBox(message);
+                        Log.Error(message);
                         System.Threading.Thread.Sleep(1000);
                         System.Environment.Exit(1);
                     }
-
                 }
             }
             catch (Exception ex)

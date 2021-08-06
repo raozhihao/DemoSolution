@@ -18,7 +18,7 @@
                                   CommandParameter="{Binding}"
                                   Width="Auto"
                                   mah:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                                  ToolTip="{Binding ToopTip}"
+                                  ToolTip="{Binding ToolTip}"
                                   HorizontalTitleAlignment="Right"
                                   Cursor="Hand">
                             <TextBlock Text="{Binding Name}" />

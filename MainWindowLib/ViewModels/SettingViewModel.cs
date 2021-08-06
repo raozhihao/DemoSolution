@@ -133,7 +133,7 @@ namespace MainWindowLib.ViewModels
                     }
 
                     //UI更新
-                    ApplicationHelper.UIInvokeMethod(p =>
+                    ApplicationHelper.UIInvokeMethod(() =>
                     {
                         this.TaskManager.GetInterfaces();
                     });

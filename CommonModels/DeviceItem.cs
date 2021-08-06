@@ -10,13 +10,9 @@ namespace CommonModels
 
         private string name;
         public string Name { get => this.name; set => this.RegisterProperty(ref this.name, value); }
-        public string ToopTip
-        {
-            get
-            {
-                return $"{this.DeviceID}\r\n{this.Name}";
-            }
-        }
+
+        private string tooltip;
+        public string ToolTip { get => this.tooltip; set => this.RegisterProperty(ref this.tooltip, value); }
         public ICommand DeviceCommand { get; set; }
 
         public ICommand UpdateHeaderCommand { get; set; }

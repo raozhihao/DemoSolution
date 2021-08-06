@@ -12,8 +12,9 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -75,19 +77,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\StaticConverters.cs" />
+    <Compile Include="CustomDialogs\DeviceUpdateView.xaml.cs">
+      <DependentUpon>DeviceUpdateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DependecyHelpers\DoTaskParameterInfoDependecy.cs" />
     <Compile Include="DependecyHelpers\ItemsDoTaskDependecy.cs" />
     <Compile Include="DependecyHelpers\MetroHamburgerMenuDependecys.cs" />
     <Compile Include="DependecyHelpers\SplitButtonDependecy.cs" />
     <Compile Include="Models\ApplicationHelper.cs" />
+    <Compile Include="Models\BaseCustomDialogViewModel.cs" />
     <Compile Include="Models\DefaultFontStyle.cs" />
     <Compile Include="NoticeGlobal.cs" />
+    <Compile Include="ViewModels\CustomViewModel.cs" />
+    <Compile Include="ViewModels\DeviceUpdateDialogViewModel.cs" />
     <Compile Include="ViewModels\DeviceViewModel.cs" />
     <Compile Include="ViewModels\InterfacesViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ViewModels\ThemeViewModel.cs" />
+    <Compile Include="Views\CustomDialogView.xaml.cs">
+      <DependentUpon>CustomDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DeivceView.xaml.cs">
       <DependentUpon>DeivceView.xaml</DependentUpon>
     </Compile>
@@ -117,6 +128,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomDialogs\DeviceUpdateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -129,6 +144,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CustomDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DeivceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +221,9 @@
       <Project>{db6b1587-63ca-436e-b380-1d3e531de8bb}</Project>
       <Name>TaskLibarary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asserts\UI.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

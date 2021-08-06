@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="MainWindowLib.Views.CustomDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:MainWindowLib.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <UniformGrid>
+            <mah:Tile Title="ShowMessageDialog"
+                      Width="auto"
+                      Height="auto"
+                      Command="{Binding ShowMessageCommand}">
+                <TextBlock Text="显示消息框" />
+            </mah:Tile>
+            <mah:Tile Title="ShowPassWordDialog"
+                      Width="auto"
+                      Height="auto"
+                      Command="{Binding ShowProgressCommand}">
+
+                <TextBlock Text="等待框" />
+            </mah:Tile>
+            <mah:Tile Title="ShowLoginDialog"
+                      Width="auto"
+                      Height="auto">
+
+                <mah:Tile.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="显示登陆"
+                                  Command="{Binding ShowLoginCommand}"
+                                  CommandParameter="ShowLogin" />
+                        <MenuItem Header="只显示密码"
+                                  Command="{Binding ShowLoginCommand}"
+                                  CommandParameter="" />
+                    </ContextMenu>
+                </mah:Tile.ContextMenu>
+                <TextBlock Text="显示登陆框或密码框(右键查看)" />
+            </mah:Tile>
+            <mah:Tile Title="ShowCustomDialog"
+                      Width="auto"
+                      Height="auto">
+                <mah:Tile.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="使用主题色"
+                                  Command="{Binding ShowCustomCommand}"
+                                  CommandParameter="Theme" />
+
+                        <MenuItem Header="使用前景色"
+                                  Command="{Binding ShowCustomCommand}"
+                                  CommandParameter="Accent" />
+
+                        <MenuItem Header="使用全局大小"
+                                  Command="{Binding ShowCustomCommand}"
+                                  CommandParameter="UseMaxHeight" />
+
+                        <MenuItem Header="非模态窗口"
+                                  Command="{Binding ShowCustomCommand}"
+                                  CommandParameter="NotShowDialog"/>
+                        
+
+                        <MenuItem Header="正常模式"
+                                  Command="{Binding ShowCustomCommand}"
+                                  CommandParameter="" />
+
+                        <MenuItem Header="主题加载"
+                                  Command="{Binding ShowThemeCommand}" />
+                    </ContextMenu>
+                </mah:Tile.ContextMenu>
+                <TextBlock Text="显示自定义框(右键查看)" />
+            </mah:Tile>
+
+        </UniformGrid>
+    </Grid>
+</UserControl>

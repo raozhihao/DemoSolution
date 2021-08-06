@@ -5,12 +5,12 @@ using GeneralTool.General.Models;
 using GeneralTool.General.WPFHelper;
 using MahApps.Metro.Controls;
 using MainWindowLib.Models;
+using MainWindowLib.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -89,7 +89,7 @@ namespace MainWindowLib.ViewModels
             }
         }
 
-        private MiddleController Controller;
+        private readonly MiddleController Controller;
 
         /// <summary>
         /// 日志
@@ -102,26 +102,17 @@ namespace MainWindowLib.ViewModels
         #region Command
 
 
-        public ICommand ClearLogCommand
+        public ICommand ClearLogCommand => new SimpleCommand<Paragraph>((p) =>
         {
-            get
-            {
-                return new SimpleCommand<Paragraph>((p) =>
-                 {
-                     this.Log.Debug("清除日志");
-                     p.Inlines.Clear();
-                     NoticeGlobal.Clear();
-                 });
-            }
-        }
+            this.Log.Debug("清除日志");
+            p.Inlines.Clear();
+            NoticeGlobal.Clear();
+        });
 
-        public ICommand HamburgerItemCommand
+        public ICommand HamburgerItemCommand => new SimpleCommand<HamburgerMenu>(h =>
         {
-            get => new SimpleCommand<HamburgerMenu>(h =>
-              {
-                  h.Content = h.SelectedItem;
-              });
-        }
+            h.Content = h.SelectedItem;
+        });
 
 
         #endregion
@@ -149,7 +140,7 @@ namespace MainWindowLib.ViewModels
         /// 主题更换事件
         /// </summary>
         /// <param name="e"></param>
-        public void ThemeMouseDown(MouseButtonEventArgs e)
+        public async void ThemeMouseDown()
         {
             this.ThemeIsOpen = !this.ThemeIsOpen;
             this.Log.Debug($"主题打开:{this.ThemeIsOpen}");
@@ -202,11 +193,12 @@ namespace MainWindowLib.ViewModels
             var key = e.AddedItems[0] + "";
 
             LangProvider.LangProviderInstance.ChangeLang(key);
-            var CurrentUICultureStr = LangProvider.LangProviderInstance.GetLangValue("CurrentUICulture");
 
-            var cultureInfo = new CultureInfo(CurrentUICultureStr);
+            //var CurrentUICultureStr = LangProvider.LangProviderInstance.GetLangValue("CurrentUICulture");
 
-            Application.Current.MainWindow.Dispatcher.Thread.CurrentUICulture = cultureInfo;
+            //var cultureInfo = new CultureInfo(CurrentUICultureStr);
+
+            //Application.Current.MainWindow.Dispatcher.Thread.CurrentUICulture = cultureInfo;
         }
 
 
@@ -235,6 +227,8 @@ namespace MainWindowLib.ViewModels
         public ImageViewModel ImageViewModel { get; set; }
 
         public DeviceViewModel DeviceViewModel { get; set; }
+
+        public CustomViewModel CustomViewModel { get; set; }
         #endregion
 
 
@@ -247,9 +241,11 @@ namespace MainWindowLib.ViewModels
             this.LangList.Add("English");
 
             //设置当前的语言包
-            var dic = new Dictionary<string, ResourceDictionary>();
-            dic.Add("English", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/English.xaml") });
-            dic.Add("中文", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/Chinese.xaml") });
+            var dic = new Dictionary<string, ResourceDictionary>
+            {
+                { "English", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/English.xaml") } },
+                { "中文", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/Chinese.xaml") } }
+            };
             LangProvider.LangProviderInstance.AddLangResources(dic);
             // LangProvider.LangProviderInstance.DefaultChineseLangKey = "中文";
         }
@@ -266,7 +262,6 @@ namespace MainWindowLib.ViewModels
 
         public void Init()
         {
-            ApplicationHelper.SynchronizationContext = SynchronizationContext.Current;
             this.Log.LogEvent += this.Log_LogEvent;
         }
 
@@ -274,6 +269,12 @@ namespace MainWindowLib.ViewModels
         {
             this.MainSelectedIndex = (int)tab;
             this.hamburger?.RaiseItemCommand();
+        }
+
+        public void MainClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (ApplicationHelper.HaveCutomShow)
+                e.Cancel = true;
         }
     }
 }

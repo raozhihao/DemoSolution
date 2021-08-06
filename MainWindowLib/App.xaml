@@ -55,6 +55,17 @@
 
             <FontFamily x:Key="DefaultIconFont">/MainWindowLib;component/Asserts/#Default</FontFamily>
             <!--<FontFamily x:Key="Generial.DefaultFontFaimly">/GeneralTool.General;component/iconttf/#iconfont</FontFamily>-->
+
+            <DataTemplate x:Key="TitleTemplate"
+                          DataType="{x:Type ContentControl}">
+
+                <!--如果想自定义到LeftCommands里面,则下面的不要即可-->
+                <!--<TextBlock Text="FaceUnlockApp - UI框架设计"
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       Style="{x:Null}"
+                       FontWeight="ExtraBold" />-->
+            </DataTemplate>
         </ResourceDictionary>
 
     </Application.Resources>

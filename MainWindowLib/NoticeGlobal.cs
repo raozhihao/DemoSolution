@@ -17,10 +17,7 @@ namespace MainWindowLib
         /// </summary>
         public static int MaxNoticCount
         {
-            get
-            {
-                return maxNoticeCount;
-            }
+            get => maxNoticeCount;
             set
             {
                 maxNoticeCount = value;
