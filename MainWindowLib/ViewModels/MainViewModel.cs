@@ -140,7 +140,7 @@ namespace MainWindowLib.ViewModels
         /// 主题更换事件
         /// </summary>
         /// <param name="e"></param>
-        public async void ThemeMouseDown()
+        public  void ThemeMouseDown()
         {
             this.ThemeIsOpen = !this.ThemeIsOpen;
             this.Log.Debug($"主题打开:{this.ThemeIsOpen}");
