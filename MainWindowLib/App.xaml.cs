@@ -7,15 +7,7 @@ namespace MainWindowLib
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            if (this.MainWindow == null)
-            {
-                this.Shutdown(-1);
-                return;
-            }
 
-            base.OnStartup(e);
-        }
+
     }
 }

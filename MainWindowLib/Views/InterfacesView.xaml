@@ -116,7 +116,7 @@
                                       MinWidth="400" />
                 </Grid.ColumnDefinitions>
             </Grid>
-           
+
             <Button Grid.Row="1"
                     Content="执行接口"
                     Command="{Binding DoTaskCommand}"
@@ -156,6 +156,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -186,12 +187,27 @@
                                Grid.Row="2"
                                Grid.Column="0" />
 
+                    <!--<TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             TextWrapping="Wrap"
+                             IsReadOnly="True"
+                             BorderThickness="0"
+                             Text="{Binding ResultType,Converter={x:Static localConverter:StaticConverters.ObjectToStringTypeConverter},Mode=TwoWay}" />-->
                     <TextBox Grid.Row="2"
                              Grid.Column="1"
                              TextWrapping="Wrap"
                              IsReadOnly="True"
                              BorderThickness="0"
-                             Text="{Binding ResultType,Converter={x:Static localConverter:StaticConverters.ObjectToStringTypeConverter},Mode=TwoWay}" />
+                             Text="{Binding ReturnString,Mode=TwoWay}" />
+
+                    <TextBlock Text="请求:"
+                               Grid.Row="3"
+                               Grid.Column="0" />
+                    <TextBox Text="{Binding HttpMethod}"
+                             IsReadOnly="True"
+                             BorderThickness="0"
+                             Grid.Row="3"
+                             Grid.Column="1" />
                 </Grid>
 
             </GroupBox>
@@ -240,9 +256,9 @@
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </ScrollViewer>
-                
+
             </GroupBox>
-            <GroupBox Header="Sokcet 调用"
+            <GroupBox Header="Http 调用"
                       Grid.Row="2"
                       Height="auto">
                 <GroupBox.Resources>
@@ -252,6 +268,8 @@
                 <TextBox Text="{Binding ElementName=TaskTab,
                         Path=SelectedValue.SelectedItem.DoTaskParameterItem.SocketArgs,
                         Mode=TwoWay}"
+                         dp:ArgsDependecy.Args="{Binding ElementName=TaskTab,
+                        Path=SelectedValue.SelectedItem.DoTaskParameterItem,Mode=TwoWay}"
                          TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Auto"
                          HorizontalScrollBarVisibility="Auto"

@@ -50,7 +50,7 @@ namespace MainWindowLib.DependecyHelpers
                 Grid.SetColumn(txtType, 0);
 
                 //数据名称
-                var txtName = new TextBlock() { Text = item.ParameterName };
+                var txtName = new TextBox() { Text = item.ParameterName };
                 grid.Children.Add(txtName);
                 Grid.SetRow(txtName, index);
                 Grid.SetColumn(txtName, 1);

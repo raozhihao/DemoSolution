@@ -8,12 +8,11 @@
                  xmlns:views="clr-namespace:MainWindowLib.Views"
                  xmlns:userHelper="clr-namespace:MainWindowLib.DependecyHelpers"
                  xmlns:vm="clr-namespace:MainWindowLib.ViewModels"
-                 xmlns:model="clr-namespace:MainWindowLib.Models"
                  TitleCharacterCasing="Normal"
                  xmlns:local="clr-namespace:MainWindowLib"
                  WindowState="Maximized"
                  mc:Ignorable="d"
-                 Title="通用UI框架"
+                 Title="{dp:LangBind DefaultText=通用UI框架,LangKey=MainTitle}"
                  Height="720"
                  Width="1280"
                  MinHeight="720"
@@ -21,7 +20,6 @@
                  x:Name="window"
                  IconBitmapScalingMode="HighQuality"
                  userHelper:MetroHamburgerMenuDependecys.Main="{Binding ElementName=window}"
-                 dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Title,LangKey=MainTitle}"
                  Closing="{dp:EventBinding EventHandlerName=MainClosing}">
 
     <mah:MetroWindow.IconTemplate>
@@ -31,7 +29,7 @@
                    RenderOptions.BitmapScalingMode="HighQuality" />
         </DataTemplate>
     </mah:MetroWindow.IconTemplate>
-    
+
     <mah:MetroWindow.Resources>
         <!--  This is the template for the option menu item  -->
         <ResourceDictionary>
@@ -83,15 +81,13 @@
     </mah:MetroWindow.Resources>
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
-            <Label Content="{x:Static model:DefaultFontStyle.ClearCache}"
-                   ToolTip="清除缓存"
-                   dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=ToolTip,LangKey=ClearLogToolTip}"
+            <Label Content="{StaticResource ClearCache}"
+                   ToolTip="{dp:LangBind DefaultText=清除缓存,LangKey=ClearLogToolTip}"
                    Style="{StaticResource CommandLabel}"
                    MouseDown="{dp:EventBinding ClearLogsMouseDown,RoutedEvent={x:Static UIElement.MouseDownEvent}}" />
 
-            <Label Content="{x:Static model:DefaultFontStyle.Theme}"
-                   ToolTip="主题颜色"
-                   dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=ToolTip,LangKey=ThemeToopTip}"
+            <Label Content="{StaticResource Theme}"
+                   ToolTip="{dp:LangBind DefaultText=主题颜色,LangKey=ThemeToopTip}"
                    Style="{StaticResource CommandLabel}"
                    MouseDown="{dp:EventBinding ThemeMouseDown}" />
 
@@ -99,21 +95,19 @@
                              userHelper:SplitButtonDependecy.ClickOpen="True"
                              SelectedIndex="{Binding LangSelectedIndex}"
                              SelectionChanged="{dp:EventBinding LangSelectionChanged}"
-                             Cursor="Hand"
-                              />
-            
+                             Cursor="Hand" />
+
         </mah:WindowCommands>
 
     </mah:MetroWindow.RightWindowCommands>
 
     <mah:MetroWindow.Flyouts>
         <mah:FlyoutsControl>
-            <mah:Flyout Header="主题颜色"
-                        dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Header,LangKey=ThemeHeader}"
+            <mah:Flyout Header="{dp:LangBind DefaultText=主题颜色,LangKey=ThemeHeader}"
                         Theme="Adapt"
                         IsOpen="{Binding ThemeIsOpen}"
                         Position="Right">
-                 <!--The content goes here--> 
+                <!--The content goes here-->
                 <views:ThemeView DataContext="{Binding ThemeViewModel}"
                                  VerticalAlignment="Top" />
             </mah:Flyout>
@@ -126,10 +120,9 @@
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="菜单栏"
+        <TextBlock Text="{dp:LangBind DefaultText=菜单栏,LangKey=MenuLabel}"
                    Visibility="Collapsed"
-                   x:Name="MenuLabel"
-                   dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Text,LangKey=MenuLabel}" />
+                   x:Name="MenuLabel" />
         <!--ConentThis-->
         <mah:HamburgerMenu x:Name="HamburgerMenuControl"
                            HamburgerWidth="48"
@@ -147,8 +140,7 @@
                                VerticalAlignment="Center"
                                FontSize="16"
                                Foreground="White"
-                               Text="菜单"
-                               dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Text,LangKey=MenuLabel}"/>
+                               Text="{dp:LangBind DefaultText=菜单,LangKey=MenuLabel}" />
                 </DataTemplate>
             </mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
 
@@ -156,12 +148,11 @@
             <mah:HamburgerMenu.ItemsSource>
                 <mah:HamburgerMenuItemCollection>
 
-                    <mah:HamburgerMenuIconItem Label="设置"
-                                               dp:LangHelper.LangMarkup="{dp:Lang BindingProperty=Label,LangKey=MenuSettingLabel}"
+                    <mah:HamburgerMenuIconItem Label="{dp:LangBind DefaultText=设置,LangKey=MenuSettingLabel}"
                                                TargetPageType="{x:Type UserControl}"
                                                IsVisible="True">
                         <mah:HamburgerMenuIconItem.Icon>
-                            <TextBlock Text="{x:Static model:DefaultFontStyle.Setting}"
+                            <TextBlock Text="{StaticResource Setting}"
                                        x:Name="tt"
                                        FontFamily="{StaticResource DefaultIconFont}"
                                        HorizontalAlignment="Center"
@@ -180,7 +171,7 @@
                     <mah:HamburgerMenuIconItem Label="接口"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
-                            <TextBlock Text="{x:Static model:DefaultFontStyle.InterfacePower}"
+                            <TextBlock Text="{StaticResource InterfacePower}"
                                        FontFamily="{StaticResource DefaultIconFont}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -196,7 +187,7 @@
                     <mah:HamburgerMenuIconItem Label="测试"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
-                            <TextBlock Text="{x:Static model:DefaultFontStyle.Picture}"
+                            <TextBlock Text="{StaticResource Picture}"
                                        FontFamily="{StaticResource DefaultIconFont}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -212,7 +203,7 @@
                     <mah:HamburgerMenuIconItem Label="设备"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
-                            <TextBlock Text="{x:Static model:DefaultFontStyle.Camera}"
+                            <TextBlock Text="{StaticResource Camera}"
                                        FontFamily="{StaticResource DefaultIconFont}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -228,7 +219,7 @@
                     <mah:HamburgerMenuIconItem Label="加载框测试"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
-                            <TextBlock Text="{x:Static model:DefaultFontStyle.LeftArrow}"
+                            <TextBlock Text="{StaticResource LED}"
                                        FontFamily="{StaticResource DefaultIconFont}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"

@@ -8,6 +8,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TaskLibarary;
 using TaskLibarary.TestLib;
 
 namespace MainWindowLib.ViewModels
@@ -36,6 +37,8 @@ namespace MainWindowLib.ViewModels
         /// 任务对象2
         /// </summary>
         public TestLib2 TestLib2 { get; set; }
+
+        public Device Device { get; set; }
 
         /// <summary>
         /// 接口对象
@@ -117,34 +120,36 @@ namespace MainWindowLib.ViewModels
         {
             this.Log.Debug("初始化");
             //等待对话框,但需要有await任务,否则不会出现
-            var loadingStr = LangProvider.LangProviderInstance.GetLangValue("LoadingStartup");
+            var loadingStr = LangProvider.LangProviderInstance.GetLangValue("Logs.LoadingStartup");
             var progressDialog = await ApplicationHelper.ShowProgressAsync("提示", loadingStr);
             try
             {
-                await Task.Run(() =>
-                {
-                    Thread.Sleep(1500);
-                    Log.Info($"设置服务器IP:{this.ServerIP},端口:{this.ServerPort}");
-                    var reBool = this.TaskManager.Open(this.ServerIP, this.ServerPort, this.TestTask, this.TestLib2);
-                    if (!reBool)
-                    {
-                        Log.Error("开启接口失败:" + this.TaskManager.ErroMsg);
-                        return;
-                    }
+                var result = await Task.Run(() =>
+                 {
+                     Thread.Sleep(1500);
+                     var setLog = LangProvider.LangProviderInstance.GetLangValueFomart("Logs.SettingOpenLog", this.ServerIP, this.ServerPort);
+                     Log.Info(setLog);
+                     var reBool = this.TaskManager.Open(this.ServerIP, this.ServerPort, this.TestTask, this.TestLib2, this.Device);
+                     if (!reBool)
+                     {
+                         Log.Error("开启接口失败:" + this.TaskManager.ErroMsg);
+                         return false;
+                     }
 
-                    //UI更新
-                    ApplicationHelper.UIInvokeMethod(() =>
-                    {
-                        this.TaskManager.GetInterfaces();
-                    });
+                     //UI更新
+                     ApplicationHelper.UIInvokeMethod(() =>
+                      {
+                          this.TaskManager.GetInterfaces();
+                      });
 
-                    this.ControlVisible = true;
-                    this.SettingCanEnable = false;
-                    this.Log.Info("开启成功");
-                });
+                     this.ControlVisible = true;
+                     this.SettingCanEnable = false;
+                     this.Log.Info("开启成功");
+                     return true;
+                 });
 
-
-                Controller.ChangeMainTab(MainTab.Interface);
+                if (result)
+                    Controller.ChangeMainTab(MainTab.Interface);
                 //NoticeGlobal.Info("开启成功");//全局通知测试
             }
             catch (Exception ex)

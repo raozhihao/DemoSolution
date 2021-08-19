@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <FontFamily x:Key="DefaultIconFont">/MainWindowLib;component/Asserts/#Default</FontFamily>
+
+    <system:String x:Key="Setting">&#xe9cb;</system:String>
+    <system:String x:Key="ClearCache">&#xe634;</system:String>
+    <system:String x:Key="Error">&#xe619;</system:String>
+    <system:String x:Key="Waring">&#xe633;</system:String>
+    <system:String x:Key="RotateRight">&#xe631;</system:String>
+    <system:String x:Key="RotateLeft">&#xe632;</system:String>
+    <system:String x:Key="LeftArrow">&#xe900;</system:String>
+    <system:String x:Key="UpArrow">&#xe601;</system:String>
+    <system:String x:Key="DownArrow">&#xe603;</system:String>
+    <system:String x:Key="RightRotate">&#xe7ae;</system:String>
+    <system:String x:Key="LeftRotate">&#xe7af;</system:String>
+    <system:String x:Key="RightArrow">&#xe604;</system:String>
+    <system:String x:Key="Info">&#xe636;</system:String>
+    <system:String x:Key="Theme">&#xe605;</system:String>
+    <system:String x:Key="ClearLogs">&#xe77a;</system:String>
+    <system:String x:Key="ArrowRight">&#xe691;</system:String>
+    <system:String x:Key="ArrowLeft">&#xe692;</system:String>
+    <system:String x:Key="OK">&#xe600;</system:String>
+    <system:String x:Key="Rect">&#xe64e;</system:String>
+    <system:String x:Key="Cancel">&#xe642;</system:String>
+    <system:String x:Key="LeftTopAngle">&#xe62d;</system:String>
+    <system:String x:Key="RightTopAngle">&#xe62e;</system:String>
+    <system:String x:Key="RightBottomAngle">&#xe62f;</system:String>
+    <system:String x:Key="LeftBottomAngle">&#xe530;</system:String>
+    <system:String x:Key="Picture">&#xe649;</system:String>
+    <system:String x:Key="Camera">&#xe641;</system:String>
+    <system:String x:Key="Android">&#xe63d;</system:String>
+    <system:String x:Key="RobotArm">&#xe69a;</system:String>
+    <system:String x:Key="RemoteHadle">&#xe656;</system:String>
+    <system:String x:Key="InterfacePower">&#xe602;</system:String>
+    <system:String x:Key="LED">&#xe78f;</system:String>
+    <system:String x:Key="FaceUnlock">&#xe6ae;</system:String>
+</ResourceDictionary>

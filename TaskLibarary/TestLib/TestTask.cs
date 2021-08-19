@@ -8,7 +8,7 @@ using System.IO;
 
 namespace TaskLibarary.TestLib
 {
-    [Route(nameof(TestTask) + "/", "测试1")]
+    [Route(nameof(TestTask) + "/", "测试1"), InjectType()]
     public class TestTask : BaseTaskInvoke
     {
         public MiddleController Controller { get; set; }

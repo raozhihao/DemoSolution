@@ -4,7 +4,7 @@ using System;
 
 namespace TaskLibarary.TestLib
 {
-    [Route(nameof(TestLib2) + "/", "测试2")]
+    [Route(nameof(TestLib2) + "/", "测试2"), InjectType()]
     public class TestLib2 : BaseTaskInvoke
     {
         [Route(nameof(TestHello), "测试SayHello")]

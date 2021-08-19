@@ -65,7 +65,8 @@ namespace MainWindowLib.ViewModels
                       Log.Debug($"执行参数信息:{parameterStr}");
                       var result = await Task.Run(() =>
                       {
-                          return this.TaskManager.DoInterface(taskinfo.Url, taskinfo);
+                          var r = this.TaskManager.DoInterface(taskinfo.Url, taskinfo);
+                          return r;
                       });
 
                       this.ResultLog = $"执行接口: [{taskinfo.Method.Name}] {Environment.NewLine}执行结果: [{this.TaskManager.JsonCovert.SerializeObject(result)}]";

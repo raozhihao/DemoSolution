@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\ReferenceDll\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="GeneralTool.General">
       <HintPath>..\packages\ReferenceDll\GeneralTool.General.dll</HintPath>
     </Reference>
@@ -48,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IniSettings.cs" />
-    <Compile Include="InjectionService.cs" />
     <Compile Include="MiddleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonModels\CommonModels.csproj">

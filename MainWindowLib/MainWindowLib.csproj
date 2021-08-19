@@ -37,7 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>MainWindowLib.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Asserts\UI.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
@@ -56,6 +59,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
@@ -80,14 +84,17 @@
     <Compile Include="CustomDialogs\DeviceUpdateView.xaml.cs">
       <DependentUpon>DeviceUpdateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DependecyHelpers\ArgsDependecy.cs" />
     <Compile Include="DependecyHelpers\DoTaskParameterInfoDependecy.cs" />
     <Compile Include="DependecyHelpers\ItemsDoTaskDependecy.cs" />
     <Compile Include="DependecyHelpers\MetroHamburgerMenuDependecys.cs" />
+    <Compile Include="DependecyHelpers\ReturnFomartDependecy.cs" />
     <Compile Include="DependecyHelpers\SplitButtonDependecy.cs" />
     <Compile Include="Models\ApplicationHelper.cs" />
     <Compile Include="Models\BaseCustomDialogViewModel.cs" />
     <Compile Include="Models\DefaultFontStyle.cs" />
     <Compile Include="NoticeGlobal.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="ViewModels\CustomViewModel.cs" />
     <Compile Include="ViewModels\DeviceUpdateDialogViewModel.cs" />
     <Compile Include="ViewModels\DeviceViewModel.cs" />
@@ -120,11 +127,27 @@
     <Compile Include="Windows\NoticeWindow.xaml.cs">
       <DependentUpon>NoticeWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Asserts\Chinese.xaml">
+    <Compile Include="Windows\SplashScreenWindow.cs" />
+    <Compile Include="Windows\UnhandleExceptionWindow.xaml.cs">
+      <DependentUpon>UnhandleExceptionWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Asserts\LangResource\Chinese.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Asserts\English.xaml">
+    <Page Include="Asserts\DefaultFonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Asserts\LangResource\English.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Asserts\LangResource\Logs_CN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Asserts\LangResource\Logs_US.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\NoticeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UnhandleExceptionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,5 +252,11 @@
   <ItemGroup>
     <Resource Include="Asserts\UI.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\code.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>XCOPY $(SolutionDir)\Packages\OutPut  /E /I /R /Y /Q</PreBuildEvent>
+  </PropertyGroup>
 </Project>

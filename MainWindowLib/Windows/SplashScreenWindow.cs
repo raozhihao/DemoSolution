@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace ProgramMain
+namespace MainWindowLib.Windows
 {
     public class SplashScreenWindow
     {
@@ -14,10 +14,12 @@ namespace ProgramMain
         }
 
         public Window Window { get; private set; }
+
+        private TextBlock messageBox;
         public void Show(BitmapImage image, double width = 800, bool topMost = true)
         {
             var grid = new Grid() { Background = Brushes.Black, Width = width };
-            var text = new TextBlock()
+            this.messageBox = new TextBlock()
             {
                 Text = "正在启动应用程序,请稍候...",
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -29,9 +31,9 @@ namespace ProgramMain
                 Margin = new Thickness(20)
             };
 
-            Panel.SetZIndex(text, 999);
+            Panel.SetZIndex(this.messageBox, 999);
 
-            grid.Children.Add(text);
+            grid.Children.Add(this.messageBox);
 
             var Img = new Image() { Source = image, Width = width, HorizontalAlignment = HorizontalAlignment.Left, VerticalAlignment = VerticalAlignment.Top };
 
@@ -55,7 +57,7 @@ namespace ProgramMain
             System.Threading.Thread.Sleep(50);
         }
 
-
+        public void SetMessage(string message) => this.messageBox.Text = message;
 
         public void Close() => this.Window?.Close();
     }

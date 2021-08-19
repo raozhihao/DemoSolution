@@ -14,7 +14,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <!-- Theme setting -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
-
+                <ResourceDictionary Source="Asserts/DefaultFonts.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="{x:Type Control}">
@@ -53,7 +53,7 @@
             </Style>
         
 
-            <FontFamily x:Key="DefaultIconFont">/MainWindowLib;component/Asserts/#Default</FontFamily>
+            <!--<FontFamily x:Key="DefaultIconFont">/MainWindowLib;component/Asserts/#Default</FontFamily>-->
             <!--<FontFamily x:Key="Generial.DefaultFontFaimly">/GeneralTool.General;component/iconttf/#iconfont</FontFamily>-->
 
             <DataTemplate x:Key="TitleTemplate"

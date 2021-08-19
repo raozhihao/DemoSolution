@@ -5,11 +5,9 @@ using GeneralTool.General.Models;
 using GeneralTool.General.WPFHelper;
 using MahApps.Metro.Controls;
 using MainWindowLib.Models;
-using MainWindowLib.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -140,7 +138,7 @@ namespace MainWindowLib.ViewModels
         /// 主题更换事件
         /// </summary>
         /// <param name="e"></param>
-        public  void ThemeMouseDown()
+        public void ThemeMouseDown()
         {
             this.ThemeIsOpen = !this.ThemeIsOpen;
             this.Log.Debug($"主题打开:{this.ThemeIsOpen}");
@@ -193,12 +191,6 @@ namespace MainWindowLib.ViewModels
             var key = e.AddedItems[0] + "";
 
             LangProvider.LangProviderInstance.ChangeLang(key);
-
-            //var CurrentUICultureStr = LangProvider.LangProviderInstance.GetLangValue("CurrentUICulture");
-
-            //var cultureInfo = new CultureInfo(CurrentUICultureStr);
-
-            //Application.Current.MainWindow.Dispatcher.Thread.CurrentUICulture = cultureInfo;
         }
 
 
@@ -243,11 +235,12 @@ namespace MainWindowLib.ViewModels
             //设置当前的语言包
             var dic = new Dictionary<string, ResourceDictionary>
             {
-                { "English", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/English.xaml") } },
-                { "中文", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/Chinese.xaml") } }
+                { "English", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/LangResource/English.xaml") } },
+                { "中文", new ResourceDictionary() { Source = new Uri($"pack://application:,,,/MainWindowLib;component/Asserts/LangResource/Chinese.xaml") } }
             };
             LangProvider.LangProviderInstance.AddLangResources(dic);
             // LangProvider.LangProviderInstance.DefaultChineseLangKey = "中文";
+            this.Init();
         }
 
         private void Controller_RaiseNoticMessageEvent(string message, GrowType growType)
