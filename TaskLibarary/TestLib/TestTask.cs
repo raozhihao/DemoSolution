@@ -13,6 +13,7 @@ namespace TaskLibarary.TestLib
     {
         public MiddleController Controller { get; set; }
 
+
         [Route(nameof(TestHello), "测试SayHello")]
         public string TestHello([WaterMark("名字")] string name, [WaterMark("年龄")] double age = 18)
         {
@@ -69,7 +70,6 @@ namespace TaskLibarary.TestLib
         [Route(nameof(TypeTest), "图片接收测试")]
         public bool TypeTest([WaterMark("Int 类型参数")] int int1 = 12, [WaterMark("double 类型参数")] double double1 = 12.2, [WaterMark("Enum 类型参数")] GrowType enumType = GrowType.Waring, [WaterMark("String 类型参数")] string str = "abcd", [WaterMark("bool 类型参数")] bool boo = false)
         {
-
             return false;
         }
 
@@ -81,5 +81,20 @@ namespace TaskLibarary.TestLib
                 return Image.FromStream(ms, true);
             }
         }
+
+        [Route(nameof(TestLog), "日志测试")]
+        public void TestLog([WaterMark("打印次数")] int count = 1000)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                new Action<int>(index =>
+                {
+                    this.Log.Info("打印日志:" + index);
+                    System.Threading.Thread.Sleep(350);
+
+                }).BeginInvoke(i, null, null);
+            }
+        }
+
     }
 }

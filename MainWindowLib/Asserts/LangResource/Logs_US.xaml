@@ -3,4 +3,5 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="LoadingStartup">Start Loading....Please wait...</sys:String>
     <sys:String x:Key="SettingOpenLog">Set IP is {0},Port is {1}</sys:String>
+    <sys:String x:Key="MessageTitle">Tips</sys:String>
 </ResourceDictionary>

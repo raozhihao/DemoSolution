@@ -168,7 +168,7 @@
                         </mah:HamburgerMenuIconItem.Tag>
                     </mah:HamburgerMenuIconItem>
 
-                    <mah:HamburgerMenuIconItem Label="接口"
+                    <mah:HamburgerMenuIconItem Label="{dp:LangBind DefaultText=接口,LangKey=MenuInterfaceLabel}"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
                             <TextBlock Text="{StaticResource InterfacePower}"
@@ -184,7 +184,7 @@
                         </mah:HamburgerMenuIconItem.Tag>
                     </mah:HamburgerMenuIconItem>
 
-                    <mah:HamburgerMenuIconItem Label="测试"
+                    <mah:HamburgerMenuIconItem Label="{dp:LangBind DefaultText=Picture,LangKey=MenuPictureLabel}"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
                             <TextBlock Text="{StaticResource Picture}"
@@ -200,7 +200,7 @@
                         </mah:HamburgerMenuIconItem.Tag>
                     </mah:HamburgerMenuIconItem>
 
-                    <mah:HamburgerMenuIconItem Label="设备"
+                    <mah:HamburgerMenuIconItem Label="{dp:LangBind DefaultText=设备,LangKey=MenuDeviceLabel}"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
                             <TextBlock Text="{StaticResource Camera}"
@@ -216,7 +216,7 @@
                         </mah:HamburgerMenuIconItem.Tag>
                     </mah:HamburgerMenuIconItem>
 
-                    <mah:HamburgerMenuIconItem Label="加载框测试"
+                    <mah:HamburgerMenuIconItem Label="{dp:LangBind DefaultText=加载框,LangKey=MenuLoadingLabel}"
                                                TargetPageType="{x:Type UserControl}">
                         <mah:HamburgerMenuIconItem.Icon>
                             <TextBlock Text="{StaticResource LED}"
@@ -290,32 +290,30 @@
                         Grid.ColumnSpan="3"
                         Margin="5 0">
                 <mah:ToggleSwitch x:Name="InfoToggle"
-                                  Content="一般日志"
+                                  Content="{dp:LangBind DefaultText=一般日志,LangKey=MenuLogInfoLabel}"
                                   IsOn="True"
-                                  Cursor="Hand"
-                                  ToolTip="显示/隐藏一般日志" />
+                                  Cursor="Hand"/>
 
                 <mah:ToggleSwitch x:Name="WaringToggle"
-                                  Content="警告日志"
+                                  Content="{dp:LangBind DefaultText=警告日志,LangKey=MenuWarnLabel}"
                                   IsOn="True"
                                   Cursor="Hand"
-                                  ToolTip="显示/隐藏警告日志" />
+                                  Margin="-30"/>
 
                 <mah:ToggleSwitch  x:Name="ErrorToggle"
-                                   Content="错误日志"
+                                   Content="{dp:LangBind DefaultText=错误日志,LangKey=MenuErrorLabel}"
                                    IsOn="True"
                                    Cursor="Hand"
-                                   Background="Red"
-                                   ToolTip="显示/隐藏错误日志" />
+                                   Background="Red" />
 
-                <TextBlock Text="显示数量  "
+                <TextBlock Text="{dp:LangBind DefaultText=日志数量,LangKey=MenuLogNumLabel}"
                            VerticalAlignment="Center" />
                 <mah:NumericUpDown Value="{Binding LogNums,StringFormat={}{0:D}}"
                                    Maximum="1000"
                                    Minimum="10"
                                    VerticalAlignment="Center" />
 
-                <TextBlock Text="字体大小"
+                <TextBlock Text="{dp:LangBind DefaultText=字体大小,LangKey=MenuLogFontSizeLabel}"
                            VerticalAlignment="Center"
                            Margin="5" />
                 <mah:NumericUpDown Value="{Binding LogFontSize}"
@@ -323,7 +321,7 @@
                                    Maximum="30"
                                    VerticalAlignment="Center" />
 
-                <Button Content="清除日志"
+                <Button Content="{dp:LangBind DefaultText=清除,LangKey=MenuClearLogsLabel}"
                         Margin="5"
                         Command="{Binding ClearLogCommand}"
                         CommandParameter="{Binding ElementName=Par}"

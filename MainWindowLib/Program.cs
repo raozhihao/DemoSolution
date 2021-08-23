@@ -9,7 +9,6 @@ using GeneralTool.General.WPFHelper.Extensions;
 using MainWindowLib.ViewModels;
 using MainWindowLib.Windows;
 using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
 using TaskLibarary;
@@ -192,7 +191,7 @@ namespace MainWindowLib
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            Log.Error(e.ExceptionObject + "");
+            Log.Error(e.ExceptionObject);
             UnhandleExceptionWindow.MessageBox(e.ExceptionObject + "");
         }
 

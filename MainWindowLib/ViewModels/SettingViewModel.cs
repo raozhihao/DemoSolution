@@ -121,7 +121,8 @@ namespace MainWindowLib.ViewModels
             this.Log.Debug("初始化");
             //等待对话框,但需要有await任务,否则不会出现
             var loadingStr = LangProvider.LangProviderInstance.GetLangValue("Logs.LoadingStartup");
-            var progressDialog = await ApplicationHelper.ShowProgressAsync("提示", loadingStr);
+            var tips = LangProvider.LangProviderInstance.GetLangValue("Logs.MessageTitle");
+            var progressDialog = await ApplicationHelper.ShowProgressAsync(tips, loadingStr);
             try
             {
                 var result = await Task.Run(() =>

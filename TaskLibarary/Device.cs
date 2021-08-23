@@ -2,7 +2,6 @@
 using GeneralTool.General.Attributes;
 using GeneralTool.General.NetHelper;
 using GeneralTool.General.TaskLib;
-using Newtonsoft.Json;
 using System;
 using System.Linq;
 
@@ -41,9 +40,6 @@ namespace TaskLibarary
         {
             var re = new { ret = false, msg = "Test" };
 
-            var state = this.GetDeviceState();
-            var ret = state.ret;
-            var j = JsonConvert.SerializeObject(re);
             var str = re.SerializeToJsonString();
             return re;
         }

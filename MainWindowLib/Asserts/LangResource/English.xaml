@@ -11,7 +11,14 @@
     <sys:String x:Key="MenuSettingLabel">Setting</sys:String>
     <sys:String x:Key="ServerIPLabel">Server IP:</sys:String>
     <sys:String x:Key="CurrentUICulture">en-US</sys:String>
-    <sys:String x:Key="MenuCut">Cut</sys:String>
-    <sys:String x:Key="MenuCopy">Copy</sys:String>
-    <sys:String x:Key="MenuPaste">Paste</sys:String>
+    <sys:String x:Key="MenuInterfaceLabel">Interfaces</sys:String>
+    <sys:String x:Key="MenuPictureLabel">Picture</sys:String>
+    <sys:String x:Key="MenuDeviceLabel">Deivces</sys:String>
+    <sys:String x:Key="MenuLoadingLabel">Loading</sys:String>
+    <sys:String x:Key="MenuLogInfoLabel">Info</sys:String>
+    <sys:String x:Key="MenuWarnLabel">Warn</sys:String>
+    <sys:String x:Key="MenuErrorLabel">Error</sys:String>
+    <sys:String x:Key="MenuLogNumLabel">LogNum</sys:String>
+    <sys:String x:Key="MenuLogFontSizeLabel">LogFontSize</sys:String>
+    <sys:String x:Key="MenuClearLogsLabel">Clear Logs</sys:String>
 </ResourceDictionary>
