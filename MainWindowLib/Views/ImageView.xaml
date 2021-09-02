@@ -58,7 +58,7 @@
             <Setter Property="ToolTip"
                     Value="取消" />
         </Style>
-    
+       
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -68,15 +68,16 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem  Cursor="Hand"
-                      FontFamily="{StaticResource  DefaultIconFont}"
-                      Command="{Binding LoadImageCommand}"
-                      Style="{StaticResource MahApps.Styles.MenuItem}"
-                      FontSize="32"
-                      ToolTip="加载图片"
+                       FontFamily="{StaticResource  DefaultIconFont}"
+                       Command="{Binding LoadImageCommand}"
+                       Style="{StaticResource MahApps.Styles.MenuItem}"
+                       FontSize="32"
+                       ToolTip="加载图片"
                        BorderBrush="Black">
                 <MenuItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="加载图片" FontSize="16"/>
+                        <TextBlock Text="加载图片"
+                                   FontSize="16" />
                         <TextBlock Text="{x:Static m:DefaultFontStyle.Picture}" />
                     </StackPanel>
                 </MenuItem.Header>

@@ -1,5 +1,6 @@
 ﻿using CommonModels;
 using GeneralTool.General.Interfaces;
+using MainWindowLib.Models;
 using MainWindowLib.Windows;
 using System;
 using System.Windows;
@@ -75,9 +76,10 @@ namespace MainWindowLib
                 {
                     ParentWindow = new NoticeWindow();
                     ParentWindow.Init();
+                    ApplicationHelper.ApplicationWindow.Closing -= ApplicationWindow_Closing;
+                    ApplicationHelper.ApplicationWindow.Closing += ApplicationWindow_Closing;
                     ParentWindow.Closed += ParentWindow_Closed;
                     ParentWindow.Show();
-
                 }
 
                 var logMessage = $"全局通知 [{model.GrowType}] : {model.Message}";
@@ -103,6 +105,11 @@ namespace MainWindowLib
                 OpenGrowEvent?.Invoke(model);
             }));
 
+        }
+
+        private static void ApplicationWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ParentWindow?.Close();
         }
 
         private static void ParentWindow_Closed(object sender, EventArgs e)

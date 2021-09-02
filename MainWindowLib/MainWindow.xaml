@@ -163,8 +163,7 @@
                             <views:RunSettingView userHelper:MetroHamburgerMenuDependecys.ViewDataContext="{x:Type vm:SettingViewModel}"
                                                   x:Name="RunSettingView"
                                                   HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  Width="500" />
+                                                  VerticalAlignment="Center" />
                         </mah:HamburgerMenuIconItem.Tag>
                     </mah:HamburgerMenuIconItem>
 

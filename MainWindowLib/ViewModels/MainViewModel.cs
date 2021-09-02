@@ -155,31 +155,27 @@ namespace MainWindowLib.ViewModels
             text.IsEnabled = false;
             var result = await ApplicationHelper.ShowProgressAsync("提示", "正在清除中,请稍候");
             await Task.Delay(1000);
-            await Task.Run(() =>
+            //清除本地LOG缓存 ,不是当天的全给清了
+            //找到本地日志文件夹
+            var logDir = new DirectoryInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs"));
+
+            //循环其中的文件夹
+            foreach (DirectoryInfo directory in logDir.EnumerateDirectories())
             {
-                //清除本地LOG缓存 ,不是当天的全给清了
-                //找到本地日志文件夹
-                var logDir = new DirectoryInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs"));
-
-                //循环其中的文件夹
-                foreach (DirectoryInfo directory in logDir.EnumerateDirectories())
+                var files = directory.GetFiles("*.log");
+                foreach (var item in files)
                 {
-                    var files = directory.GetFiles("*.log");
-                    foreach (var item in files)
+                    try
                     {
-                        try
-                        {
-                            if ((DateTime.Now - item.CreationTime >= TimeSpan.FromHours(10)))
-                                item.Delete();
-                        }
-                        catch
-                        {
+                        if ((DateTime.Now - item.CreationTime >= TimeSpan.FromHours(10)))
+                            item.Delete();
+                    }
+                    catch
+                    {
 
-                        }
                     }
                 }
-
-            });
+            }
 
             await result.CloseAsync();
             text.IsEnabled = true;

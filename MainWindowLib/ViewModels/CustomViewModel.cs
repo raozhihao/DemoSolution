@@ -22,15 +22,13 @@ namespace MainWindowLib.ViewModels
             get => new SimpleCommand(async () =>
             {
                 var result = await ApplicationHelper.ShowProgressAsync("等待框", "请等待 3 秒");
-                await Task.Run(() =>
+
+                for (int i = 1; i < 4; i++)
                 {
-                    for (int i = 1; i < 4; i++)
-                    {
-                        result.SetProgress((i * 3.0) / 10);
-                        result.SetMessage($"请等待 {(4 - i)} 秒");
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                });
+                    result.SetProgress((i * 3.0) / 10);
+                    result.SetMessage($"请等待 {(4 - i)} 秒");
+                   await Task.Delay(1000);
+                }
                 await result.CloseAsync();
             });
         }

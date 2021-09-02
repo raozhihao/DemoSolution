@@ -87,9 +87,21 @@ namespace MainWindowLib
                 }
             }
 
-            var result = method.Invoke(e.RequestRoute.Target, datas);
-            var reStr = result.SerializeToJsonString();
-            e.WriteResponse(reStr);
+            string reStr = "";
+            try
+            {
+                var result = method.Invoke(e.RequestRoute.Target, datas);
+                 reStr = result.SerializeToJsonString();
+               
+            }
+            catch (Exception ex)
+            {
+                reStr = ex.Message;
+            }
+            finally
+            {
+                e.WriteResponse(reStr);
+            }
         }
 
         static bool OnStart()

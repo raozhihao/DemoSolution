@@ -125,32 +125,24 @@ namespace MainWindowLib.ViewModels
             var progressDialog = await ApplicationHelper.ShowProgressAsync(tips, loadingStr);
             try
             {
-                var result = await Task.Run(() =>
-                 {
-                     Thread.Sleep(1500);
-                     var setLog = LangProvider.LangProviderInstance.GetLangValueFomart("Logs.SettingOpenLog", this.ServerIP, this.ServerPort);
-                     Log.Info(setLog);
-                     var reBool = this.TaskManager.Open(this.ServerIP, this.ServerPort, this.TestTask, this.TestLib2, this.Device);
-                     if (!reBool)
-                     {
-                         Log.Error("开启接口失败:" + this.TaskManager.ErroMsg);
-                         return false;
-                     }
+                await Task.Delay(100);
 
-                     //UI更新
-                     ApplicationHelper.UIInvokeMethod(() =>
-                      {
-                          this.TaskManager.GetInterfaces();
-                      });
+                var setLog = LangProvider.LangProviderInstance.GetLangValueFomart("Logs.SettingOpenLog", this.ServerIP, this.ServerPort);
+                Log.Info(setLog);
+                var reBool = this.TaskManager.Open(this.ServerIP, this.ServerPort, this.TestTask, this.TestLib2, this.Device);
+                if (!reBool)
+                {
+                    Log.Error("开启接口失败:" + this.TaskManager.ErroMsg);
+                    return;
+                }
 
-                     this.ControlVisible = true;
-                     this.SettingCanEnable = false;
-                     this.Log.Info("开启成功");
-                     return true;
-                 });
+                //加载所有接口
+                this.TaskManager.GetInterfaces();
 
-                if (result)
-                    Controller.ChangeMainTab(MainTab.Interface);
+                this.ControlVisible = true;
+                this.SettingCanEnable = false;
+                this.Log.Info("开启成功");
+                Controller.ChangeMainTab(MainTab.Interface);
                 //NoticeGlobal.Info("开启成功");//全局通知测试
             }
             catch (Exception ex)

@@ -1,5 +1,6 @@
 ﻿using CommonModels;
 using MahApps.Metro.Controls;
+using MainWindowLib.Models;
 using MainWindowLib.Views;
 using System;
 using System.Windows;
@@ -32,6 +33,7 @@ namespace MainWindowLib.Windows
             base.Left = workArea.Right - base.Width;
             base.Top = 0.0;
             this.PanelContent.SizeChanged += PanelContent_SizeChanged;
+            this.Owner = ApplicationHelper.ApplicationWindow;
         }
 
         private void PanelContent_SizeChanged(object sender, SizeChangedEventArgs e)

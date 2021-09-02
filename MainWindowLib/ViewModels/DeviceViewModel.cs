@@ -58,7 +58,7 @@ namespace MainWindowLib.ViewModels
                         var first = this.DeviceItems.FirstOrDefault(d => d.Name == model.Name);
                         if (first != null && first != sender)
                         {
-                            await ApplicationHelper.ApplicationWindow.ShowMessageAsync("提示", $"设备名称 {model.Name} 已存在");
+                            await ApplicationHelper.ShowAsync("提示", $"设备名称 {model.Name} 已存在");
                             return;
                         }
                         sender.Name = model.Name;

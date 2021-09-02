@@ -23,7 +23,6 @@ namespace TaskLibarary
         {
             var code = Guid.NewGuid().ToString();
             return new { ret = true, sn = code };
-
         }
 
         [Route(nameof(SetList), "设置测试", HttpMethod.POST)]
