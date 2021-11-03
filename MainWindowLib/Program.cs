@@ -24,7 +24,7 @@ namespace MainWindowLib
         [STAThread]
         static void Main()
         {
-            OnStart();
+            OnStart(); 
         }
 
 
