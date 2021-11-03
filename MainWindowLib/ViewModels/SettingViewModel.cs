@@ -129,7 +129,8 @@ namespace MainWindowLib.ViewModels
 
                 var setLog = LangProvider.LangProviderInstance.GetLangValueFomart("Logs.SettingOpenLog", this.ServerIP, this.ServerPort);
                 Log.Info(setLog);
-                var reBool = this.TaskManager.Open(this.ServerIP, this.ServerPort, this.TestTask, this.TestLib2, this.Device);
+                //var reBool = this.TaskManager.Open(this.ServerIP, this.ServerPort, this.TestTask, this.TestLib2, this.Device);
+                var reBool = this.TaskManager.Open(this.ServerIP, this.ServerPort, this.TestTask);
                 if (!reBool)
                 {
                     Log.Error("开启接口失败:" + this.TaskManager.ErroMsg);

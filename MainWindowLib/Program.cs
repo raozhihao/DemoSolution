@@ -55,6 +55,7 @@ namespace MainWindowLib
             SimpleIocSerivce.SimpleIocSerivceInstance.Inject(false,
                 typeof(MiddleController),
                 typeof(SettingViewModel),
+                typeof(AutoCreateViewModel),
                 typeof(Device),
                 typeof(ImageViewModel),
                 typeof(InterfacesViewModel),

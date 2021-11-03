@@ -21,4 +21,8 @@
     <sys:String x:Key="MenuLogNumLabel">LogNum</sys:String>
     <sys:String x:Key="MenuLogFontSizeLabel">LogFontSize</sys:String>
     <sys:String x:Key="MenuClearLogsLabel">Clear Logs</sys:String>
+    
+    
+    <sys:String x:Key="TestTaskLabel">Test</sys:String>
+    <sys:String x:Key="SayHelloLable">SayHello</sys:String>
 </ResourceDictionary>

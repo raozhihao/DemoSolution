@@ -46,8 +46,8 @@
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.4.4.0\lib\net45\ControlzEx.dll</HintPath>
     </Reference>
-    <Reference Include="GeneralTool.General">
-      <HintPath>..\packages\ReferenceDll\GeneralTool.General.dll</HintPath>
+    <Reference Include="GeneralTool.General, Version=2.0.2.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeneralTool.General.2.0.2.9\lib\net45\GeneralTool.General.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.2.4.7\lib\net452\MahApps.Metro.dll</HintPath>
@@ -94,8 +94,11 @@
     <Compile Include="Models\ApplicationHelper.cs" />
     <Compile Include="Models\BaseCustomDialogViewModel.cs" />
     <Compile Include="Models\DefaultFontStyle.cs" />
+    <Compile Include="Models\TestModel.cs" />
+    <Compile Include="Models\TestModels.cs" />
     <Compile Include="NoticeGlobal.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ViewModels\AutoCreateViewModel.cs" />
     <Compile Include="ViewModels\CustomViewModel.cs" />
     <Compile Include="ViewModels\DeviceUpdateDialogViewModel.cs" />
     <Compile Include="ViewModels\DeviceViewModel.cs" />
@@ -104,6 +107,9 @@
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ViewModels\ThemeViewModel.cs" />
+    <Compile Include="Views\AutoCreateView.xaml.cs">
+      <DependentUpon>AutoCreateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomDialogView.xaml.cs">
       <DependentUpon>CustomDialogView.xaml</DependentUpon>
     </Compile>
@@ -168,6 +174,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AutoCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

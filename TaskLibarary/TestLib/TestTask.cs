@@ -8,13 +8,13 @@ using System.IO;
 
 namespace TaskLibarary.TestLib
 {
-    [Route(nameof(TestTask) + "/", "测试1"), InjectType()]
+    [Route(nameof(TestTask) + "/", "测试Test",LangKey = "TestTaskLabel"), InjectType()]
     public class TestTask : BaseTaskInvoke
     {
         public MiddleController Controller { get; set; }
 
 
-        [Route(nameof(TestHello), "测试SayHello")]
+        [Route(nameof(TestHello), "测试SayHello",LangKey ="SayHelloLable")]
         public string TestHello([WaterMark("名字")] string name, [WaterMark("年龄")] double age = 18)
         {
             return $"Hello {name} , your age is {age}";

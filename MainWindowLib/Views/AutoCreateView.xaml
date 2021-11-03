@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="MainWindowLib.Views.AutoCreateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MainWindowLib.ViewModels"
+             xmlns:local="clr-namespace:MainWindowLib.Views"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <ObjectDataProvider ObjectType="{x:Type vm:AutoCreateViewModel}" />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Menu>
+            <MenuItem Header="change"
+                      Command="{Binding ChangeCommand}" />
+        </Menu>
+        <!--<TextBlock Text="{Binding Text,Mode=TwoWay}" />-->
+        <ScrollViewer Grid.Row="1">
+
+            <ItemsControl ItemsSource="{Binding KeyValuePairs}" >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="{StaticResource MahApps.Brushes.Badged.Background}"
+                                BorderThickness="1"
+                                DataContext="{Binding}"
+                                VerticalAlignment="Top"
+                                Margin="0 0 0 15">
+
+                            <ListBox ItemsSource="{Binding KeyValues}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding ColumnName}" />
+                                            <TextBlock Text="{Binding Value}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                           
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

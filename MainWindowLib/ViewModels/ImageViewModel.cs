@@ -58,13 +58,13 @@ namespace MainWindowLib.ViewModels
 
         public void CutImageOkMethod(object sender, ImageEventArgs e)
         {
-            this.Log.Info($"截图是否成功:{e.Sucess} - {e.ErroMsg}");
-            if (e.Sucess)
-            {
-                var path = "1.jpeg";
-                e.Source.SaveBitmapSouce(path, GeneralTool.General.Enums.BitmapEncoderEnum.Jpeg);
-                this.Log.Info($"图片已保存至:{path}");
-            }
+            //this.Log.Info($"截图是否成功:{e.Sucess} - {e.ErroMsg}");
+            //if (e.Sucess)
+            //{
+            //    var path = "1.jpeg";
+            //    e.Source.SaveBitmapSouce(path, GeneralTool.General.Enums.BitmapEncoderEnum.Jpeg);
+            //    this.Log.Info($"图片已保存至:{path}");
+            //}
         }
 
 

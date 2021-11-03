@@ -230,6 +230,23 @@
                             <views:CustomDialogView userHelper:MetroHamburgerMenuDependecys.ViewDataContext="{x:Type vm:CustomViewModel}" />
                         </mah:HamburgerMenuIconItem.Tag>
                     </mah:HamburgerMenuIconItem>
+
+                    <mah:HamburgerMenuIconItem Label="{dp:LangBind DefaultText=加载框,LangKey=MenuLoadingLabel}"
+                                               TargetPageType="{x:Type UserControl}">
+                        <mah:HamburgerMenuIconItem.Icon>
+                            <TextBlock Text="{StaticResource RemoteHadle}"
+                                       FontFamily="{StaticResource DefaultIconFont}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding ElementName=RunSettingView,Path=DataContext.ControlVisible,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        </mah:HamburgerMenuIconItem.Icon>
+
+                        <mah:HamburgerMenuIconItem.Tag>
+                            <views:AutoCreateView userHelper:MetroHamburgerMenuDependecys.ViewDataContext="{x:Type vm:AutoCreateViewModel}" />
+                        </mah:HamburgerMenuIconItem.Tag>
+                    </mah:HamburgerMenuIconItem>
+
                 </mah:HamburgerMenuItemCollection>
             </mah:HamburgerMenu.ItemsSource>
 
