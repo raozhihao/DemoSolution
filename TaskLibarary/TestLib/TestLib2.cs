@@ -1,5 +1,5 @@
-﻿using GeneralTool.General.Attributes;
-using GeneralTool.General.TaskLib;
+﻿using GeneralTool.CoreLibrary.Attributes;
+using GeneralTool.CoreLibrary.TaskLib;
 using System;
 
 namespace TaskLibarary.TestLib

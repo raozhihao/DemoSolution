@@ -1,4 +1,4 @@
-﻿using GeneralTool.General.Interfaces;
+﻿using GeneralTool.CoreLibrary.Interfaces;
 
 namespace MainWindowLib
 {

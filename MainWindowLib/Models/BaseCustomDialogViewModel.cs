@@ -1,4 +1,4 @@
-﻿using GeneralTool.General.WPFHelper;
+﻿using GeneralTool.CoreLibrary.WPFHelper;
 using MahApps.Metro.Controls.Dialogs;
 using System.Threading.Tasks;
 using System.Windows.Input;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using GeneralTool.General.WPFHelper;
+using GeneralTool.CoreLibrary.WPFHelper;
 
 namespace MainWindowLib.Models
 {

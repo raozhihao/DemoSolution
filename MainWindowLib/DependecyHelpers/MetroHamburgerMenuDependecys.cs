@@ -45,7 +45,7 @@ namespace MainWindowLib.DependecyHelpers
             foreach (var item in userModels)
             {
                 //var obj = CommonLibrary.InjectionService.Service.Resolve(item.Value);
-                var obj = GeneralTool.General.Ioc.SimpleIocSerivce.SimpleIocSerivceInstance.Resolve(item.Value);
+                var obj = GeneralTool.CoreLibrary.Ioc.SimpleIocSerivce.SimpleIocSerivceInstance.Resolve(item.Value);
                 item.Key.DataContext = obj;
             }
         }

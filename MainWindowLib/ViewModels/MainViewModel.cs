@@ -1,8 +1,8 @@
 ﻿using CommonLibrary;
 using CommonModels;
-using GeneralTool.General.Interfaces;
-using GeneralTool.General.Models;
-using GeneralTool.General.WPFHelper;
+using GeneralTool.CoreLibrary.Interfaces;
+using GeneralTool.CoreLibrary.Models;
+using GeneralTool.CoreLibrary.WPFHelper;
 using MahApps.Metro.Controls;
 using MainWindowLib.Models;
 using System;

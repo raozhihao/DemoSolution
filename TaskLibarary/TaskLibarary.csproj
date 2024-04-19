@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GeneralTool.General, Version=2.0.2.9, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GeneralTool.General.2.0.2.9\lib\net45\GeneralTool.General.dll</HintPath>
+    <Reference Include="GeneralTool.CoreLibrary">
+      <HintPath>..\packages\ReferenceDll\GeneralTool.CoreLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,9 +59,6 @@
       <Project>{8F5DB147-4A70-4170-BAF9-C3F50CC27B01}</Project>
       <Name>CommonModels</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,5 @@
 ﻿using CommonModels;
-using GeneralTool.General.Interfaces;
+using GeneralTool.CoreLibrary.Interfaces;
 using MainWindowLib.Models;
 using MainWindowLib.Windows;
 using System;

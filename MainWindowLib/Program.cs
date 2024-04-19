@@ -1,11 +1,11 @@
 ﻿using CommonLibrary;
 using ControlzEx.Theming;
-using GeneralTool.General;
-using GeneralTool.General.Interfaces;
-using GeneralTool.General.Ioc;
-using GeneralTool.General.Logs;
-using GeneralTool.General.TaskLib;
-using GeneralTool.General.WPFHelper.Extensions;
+using GeneralTool.CoreLibrary;
+using GeneralTool.CoreLibrary.Interfaces;
+using GeneralTool.CoreLibrary.Ioc;
+using GeneralTool.CoreLibrary.Logs;
+using GeneralTool.CoreLibrary.TaskLib;
+using GeneralTool.CoreLibrary.WPFHelper.Extensions;
 using MainWindowLib.ViewModels;
 using MainWindowLib.Windows;
 using System;
@@ -38,8 +38,8 @@ namespace MainWindowLib
         /// </summary>
         static void Inject()
         {
-            var httpServer = new HttpServerStation(null);
-            httpServer.HandlerRequest += HttpServer_HandlerRequest;
+            var httpLog = new FileInfoLog("http");
+            var httpServer = new HttpServerStation(httpLog);
             SimpleIocSerivce.SimpleIocSerivceInstance.Inject(new TaskManager(null, null, httpServer));
 
             //SimpleIocSerivce.SimpleIocSerivceInstance.Inject<TaskManager>();
@@ -70,41 +70,7 @@ namespace MainWindowLib
         }
 
 
-        static void HttpServer_HandlerRequest(object sender, RequestInfo e)
-        {
-            var method = e.RequestRoute.MethodInfo;
-            var parameters = method.GetParameters();
-            var datas = new object[parameters.Length];
-            int index = 0;
-            foreach (var item in parameters)
-            {
-                var name = item.Name;
-                var re = e.ServerRequest.Paramters.TryGetValue(name, out var value);
-                if (re)
-                {
-                    var obj = Convert.ChangeType(value, item.ParameterType);
-                    datas[index] = obj;
-                    index++;
-                }
-            }
-
-            string reStr = "";
-            try
-            {
-                var result = method.Invoke(e.RequestRoute.Target, datas);
-                 reStr = result.SerializeToJsonString();
-               
-            }
-            catch (Exception ex)
-            {
-                reStr = ex.Message;
-            }
-            finally
-            {
-                e.WriteResponse(reStr);
-            }
-        }
-
+      
         static bool OnStart()
         {
             Log.Info("程序开始准备初始化");

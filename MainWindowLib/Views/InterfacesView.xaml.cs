@@ -9,7 +9,7 @@ namespace MainWindowLib.Views
     {
         public InterfacesView()
         {
-            InitializeComponent();//GeneralTool.General.WPFHelper.Extensions.CoverterEx.ObjectToStringConverter
+            InitializeComponent();//GeneralTool.CoreLibrary.WPFHelper.Extensions.CoverterEx.ObjectToStringConverter
         }
 
         private void InterfaceList_SelectionChanged(object sender, SelectionChangedEventArgs e)

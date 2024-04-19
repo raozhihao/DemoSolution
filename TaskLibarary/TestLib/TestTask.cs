@@ -1,7 +1,7 @@
 ﻿using CommonLibrary;
 using CommonModels;
-using GeneralTool.General.Attributes;
-using GeneralTool.General.TaskLib;
+using GeneralTool.CoreLibrary.Attributes;
+using GeneralTool.CoreLibrary.TaskLib;
 using System;
 using System.Drawing;
 using System.IO;
@@ -96,5 +96,16 @@ namespace TaskLibarary.TestLib
             }
         }
 
+        [Route(nameof(UIEdtorTest),"测试自定义控件",SortIndex = -1)]
+        public void UIEdtorTest(
+            [WaterMark("数值"),WaterUIEditor(typeof(NumberControl),1,255,2)] byte byteValue,
+            [WaterMark("枚举"), WaterUIEditor(typeof(EnumControl))] GrowType growType= GrowType.Waring,
+            [WaterMark("字符串"), WaterUIEditor(typeof(StringControl),3)] string str="111",
+            [WaterMark("布尔"), WaterUIEditor(typeof(BoolControl))] bool boo=true
+
+            )
+        {
+            this.Log.Info($"{byteValue} {growType}  {str}   {boo}");
+        }
     }
 }

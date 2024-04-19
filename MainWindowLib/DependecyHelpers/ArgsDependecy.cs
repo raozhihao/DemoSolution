@@ -1,4 +1,6 @@
-﻿using GeneralTool.General.Models;
+﻿using GeneralTool.CoreLibrary.Models;
+using GeneralTool.CoreLibrary.TaskLib;
+
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -34,10 +36,10 @@ namespace MainWindowLib.DependecyHelpers
             builder.Append(@"http://" + url + value.Url);
 
             var list = value.Paramters;
-            if (value.HttpMethod == GeneralTool.General.NetHelper.HttpMethod.GET && list.Count > 0)
+            if (value.HttpMethod == HttpMethod.GET && list.Count > 0)
                 builder.Append("?");
 
-            if (list.Count > 0 && value.HttpMethod == GeneralTool.General.NetHelper.HttpMethod.GET)
+            if (list.Count > 0 && value.HttpMethod == HttpMethod.GET)
             {
                 var listStr = list.Select(p =>
                 {

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:convert="clr-namespace:GeneralTool.General.WPFHelper.Extensions;assembly=GeneralTool.General"
+             xmlns:convert="clr-namespace:GeneralTool.CoreLibrary.WPFHelper.Extensions;assembly=GeneralTool.CoreLibrary"
              xmlns:dp="clr-namespace:MainWindowLib.DependecyHelpers"
              xmlns:localConverter="clr-namespace:MainWindowLib.Converters"
              mc:Ignorable="d">

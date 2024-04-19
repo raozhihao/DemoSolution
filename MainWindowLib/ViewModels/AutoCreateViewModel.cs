@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GeneralTool.General.WPFHelper;
+using GeneralTool.CoreLibrary.WPFHelper;
 using System.Windows.Input;
 
 namespace MainWindowLib.ViewModels
@@ -35,7 +35,7 @@ namespace MainWindowLib.ViewModels
             keyVal.Add("进度", "0.9");
             keyVal.Add("备注", "Error");
             //可选
-            keyVal.Add("本地路径", @"C:\Code\GitCode\GeneralTools\GeneralTool.General\bin\Debug");
+            keyVal.Add("本地路径", @"C:\Code\GitCode\GeneralTools\GeneralTool.CoreLibrary\bin\Debug");
             keyVal.Add("远程路径", "/sdcard/testfile24");
             keyVal.Add("处理数量", "4566");
             keyVal.Add("目录数量", "50");

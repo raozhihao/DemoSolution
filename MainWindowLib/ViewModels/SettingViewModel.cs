@@ -1,8 +1,8 @@
 ﻿using CommonLibrary;
 using CommonModels;
-using GeneralTool.General.Interfaces;
-using GeneralTool.General.TaskLib;
-using GeneralTool.General.WPFHelper;
+using GeneralTool.CoreLibrary.Interfaces;
+using GeneralTool.CoreLibrary.TaskLib;
+using GeneralTool.CoreLibrary.WPFHelper;
 using MainWindowLib.Models;
 using System;
 using System.Threading;

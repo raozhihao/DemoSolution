@@ -1,7 +1,12 @@
-﻿using GeneralTool.General.Models;
-using GeneralTool.General.WPFHelper.Extensions;
+﻿using CommonLibrary;
+
+using GeneralTool.CoreLibrary.Models;
+using GeneralTool.CoreLibrary.WPFHelper.Extensions;
 using MahApps.Metro.Controls;
+using MainWindowLib.Models;
+
 using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -37,10 +42,11 @@ namespace MainWindowLib.DependecyHelpers
             grid.Children.Clear();
             grid.RowDefinitions.Clear();
             var model = e.NewValue as DoTaskParameterItem;
-
+            var parameters = model.Method.GetParameters();
             int index = 0;
-            foreach (var item in model.Paramters)
+            for (int i = 0; i < parameters.Length; i++)
             {
+                var item = model.Paramters[i];
                 //生成行
                 grid.RowDefinitions.Add(new RowDefinition());
                 //写入数据
@@ -49,31 +55,62 @@ namespace MainWindowLib.DependecyHelpers
                 Grid.SetRow(txtName, index);
                 Grid.SetColumn(txtName, 0);
 
-                //只支持 string 类型,数值类型,枚举类型,boolean
-                //枚举
-                if (item.ParameterType.IsEnum)
+                var sourceParameter = parameters[i];
+                var uiAttr = sourceParameter.GetCustomAttribute<WaterUIEditorAttribute>();
+                if (uiAttr != null)
                 {
-                    SetEnumUI(grid, item, index);
-                }
-                else if (item.ParameterType.IsValueType)
-                {
-                    //值类型
-                    if (item.ParameterType == typeof(Boolean))
-                    {
-                        SetBooleanUI(grid, item, index);
-                    }
-                    else
-                        SetValueType(grid, item, index);
+                    var control = uiAttr.UIControl;
+                    var baseControl = Activator.CreateInstance(control) as BaseUIControl;
+                    var property = baseControl.DependencyProperty;
+
+                    item.Value = baseControl.ConvertByString(item);
+                    SetControlBinding(grid, item, index, baseControl.Control, property);
+                    baseControl.SetProperty(baseControl.Control, uiAttr.Settings);
                 }
                 else
                 {
-                    //其它全是string类型
-                    SetStringUI(grid, item, index);
+                    //只支持 string 类型,数值类型,枚举类型,boolean
+                    //枚举
+                    if (item.ParameterType.IsEnum)
+                    {
+                        SetEnumUI(grid, item, index);
+                    }
+                    else if (item.ParameterType.IsValueType)
+                    {
+                        //值类型
+                        if (item.ParameterType == typeof(Boolean))
+                        {
+                            SetBooleanUI(grid, item, index);
+                        }
+                        else
+                            SetValueType(grid, item, index);
+                    }
+                    else
+                    {
+                        //其它全是string类型
+                        SetStringUI(grid, item, index);
+                    }
+
                 }
 
                 index++;
             }
         }
+
+
+        private static void SetControlBinding(Grid grid, ParameterItem item, int index, Control valueControl, DependencyProperty property)
+        {
+            grid.Children.Add(valueControl);
+            Grid.SetRow(valueControl, index);
+            Grid.SetColumn(valueControl, 1);
+            //binding
+            valueControl.DataContext = item;
+
+            SetBinding(valueControl, item, property);
+            //double.TryParse(item.Value + "", out var result);
+            //valueControl.Value = result;
+        }
+
 
         private static void SetValueType(Grid grid, ParameterItem item, int index)
         {

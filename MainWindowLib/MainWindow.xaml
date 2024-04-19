@@ -4,7 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                 xmlns:dp="clr-namespace:GeneralTool.General.WPFHelper.Extensions;assembly=GeneralTool.General"
+                 xmlns:dp="clr-namespace:GeneralTool.CoreLibrary.WPFHelper.Extensions;assembly=GeneralTool.CoreLibrary"
                  xmlns:views="clr-namespace:MainWindowLib.Views"
                  xmlns:userHelper="clr-namespace:MainWindowLib.DependecyHelpers"
                  xmlns:vm="clr-namespace:MainWindowLib.ViewModels"

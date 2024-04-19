@@ -1,4 +1,4 @@
-﻿using GeneralTool.General.Models;
+﻿using GeneralTool.CoreLibrary.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;

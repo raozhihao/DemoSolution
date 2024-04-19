@@ -1,4 +1,4 @@
-﻿using GeneralTool.General.WPFHelper.Extensions;
+﻿using GeneralTool.CoreLibrary.WPFHelper.Extensions;
 using System.Windows.Data;
 
 namespace MainWindowLib.Converters

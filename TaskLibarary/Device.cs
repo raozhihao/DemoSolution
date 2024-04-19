@@ -1,7 +1,7 @@
-﻿using GeneralTool.General;
-using GeneralTool.General.Attributes;
-using GeneralTool.General.NetHelper;
-using GeneralTool.General.TaskLib;
+﻿using GeneralTool.CoreLibrary.Attributes;
+using GeneralTool.CoreLibrary.Extensions;
+using GeneralTool.CoreLibrary.TaskLib;
+
 using System;
 using System.Linq;
 

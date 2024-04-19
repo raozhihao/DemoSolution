@@ -1,4 +1,4 @@
-﻿using GeneralTool.General.IniHelpers;
+﻿using GeneralTool.CoreLibrary.IniHelpers;
 
 namespace CommonLibrary
 {

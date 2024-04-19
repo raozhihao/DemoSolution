@@ -1,8 +1,9 @@
-﻿using GeneralTool.General.ExceptionHelper;
-using GeneralTool.General.Interfaces;
-using GeneralTool.General.Models;
-using GeneralTool.General.TaskLib;
-using GeneralTool.General.WPFHelper;
+﻿using GeneralTool.CoreLibrary.Extensions;
+using GeneralTool.CoreLibrary.Interfaces;
+using GeneralTool.CoreLibrary.Models;
+using GeneralTool.CoreLibrary.TaskLib;
+using GeneralTool.CoreLibrary.WPFHelper;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -59,13 +60,12 @@ namespace MainWindowLib.ViewModels
                   try
                   {
                       Log.Debug($"开始执行接口:{taskinfo.Url}");
-                      bool re = CheckParameter(taskinfo, out var parameterStr);
-                      if (!re)
-                          return;
+                      var parameterStr = GetParameter(taskinfo);
+                     
                       Log.Debug($"执行参数信息:{parameterStr}");
                       var result = await Task.Run(() =>
                       {
-                          var r = this.TaskManager.DoInterface(taskinfo.Url, taskinfo);
+                          var r = this.TaskManager.DoInterface( taskinfo);
                           return r;
                       });
 
@@ -87,26 +87,14 @@ namespace MainWindowLib.ViewModels
         /// </summary>
         /// <param name="taskinfo"></param>
         /// <returns></returns>
-        private bool CheckParameter(DoTaskParameterItem taskinfo, out string parameterStr)
+        private string GetParameter(DoTaskParameterItem taskinfo)
         {
-            parameterStr = "";
             var list = new List<string>(taskinfo.Paramters.Count);
             foreach (var item in taskinfo.Paramters)
             {
-                try
-                {
-                    list.Add($"{item.ParameterName}:{item.Value}");
-                    //Convert.ChangeType(item.Value, item.ParameterType);
-                }
-                catch
-                {
-                    //this.ResultLog = $"参数:{item.ParameterName} 值填写不正确,应该为类型:{item.ParameterType}";
-                    //this.Log.Error(ResultLog);
-                    //return false;
-                }
+                list.Add($"{item.ParameterName}:{item.Value}");
             }
-            parameterStr = string.Join(" , ", list);
-            return true;
+          return string.Join(" , ", list);
         }
 
         private CommonLibrary.MiddleController controller;

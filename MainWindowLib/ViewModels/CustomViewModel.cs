@@ -1,4 +1,4 @@
-﻿using GeneralTool.General.WPFHelper;
+﻿using GeneralTool.CoreLibrary.WPFHelper;
 using MahApps.Metro.Controls.Dialogs;
 using MainWindowLib.Models;
 using MainWindowLib.Views;

@@ -1,6 +1,6 @@
-﻿using GeneralTool.General.Interfaces;
-using GeneralTool.General.Models;
-using GeneralTool.General.WPFHelper;
+﻿using GeneralTool.CoreLibrary.Interfaces;
+using GeneralTool.CoreLibrary.Models;
+using GeneralTool.CoreLibrary.WPFHelper;
 using Microsoft.Win32;
 using System;
 using System.Windows.Input;
@@ -62,7 +62,7 @@ namespace MainWindowLib.ViewModels
             //if (e.Sucess)
             //{
             //    var path = "1.jpeg";
-            //    e.Source.SaveBitmapSouce(path, GeneralTool.General.Enums.BitmapEncoderEnum.Jpeg);
+            //    e.Source.SaveBitmapSouce(path, GeneralTool.CoreLibrary.Enums.BitmapEncoderEnum.Jpeg);
             //    this.Log.Info($"图片已保存至:{path}");
             //}
         }

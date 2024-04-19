@@ -1,7 +1,7 @@
 ﻿using CommonLibrary;
 using ControlzEx.Theming;
-using GeneralTool.General.Interfaces;
-using GeneralTool.General.WPFHelper;
+using GeneralTool.CoreLibrary.Interfaces;
+using GeneralTool.CoreLibrary.WPFHelper;
 using MainWindowLib.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
